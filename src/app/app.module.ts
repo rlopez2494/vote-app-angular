@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ViewOption } from './view-option/view-option.component';
+import { RemoveWrapper } from './directives/remove-wrapper.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ViewOption,
+    RemoveWrapper
   ],
   imports: [
     BrowserModule,
