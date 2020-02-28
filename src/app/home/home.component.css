@@ -1,0 +1,45 @@
+.half-screen {
+    height: 50vh;
+    text-align: center;
+    position: relative;
+    padding-top: 15px;
+    /* background-color: rgba(223, 223, 223, 0.8); */
+}
+
+.half-screen__heading {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    font-size: 1.7rem;
+    border: 1px solid #636363;
+    border-radius: 5px;
+    padding: 15px 0;
+    width: 420px;
+    min-width: auto;
+    margin: 0 auto;
+    box-shadow: inset 0px 0px 2px rgb(56, 56, 56);
+    color: rgb(56, 56, 56);
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.vertical-center {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+}
+
+
+
+@media only screen and (max-width: 690px) {
+    .flex-container {
+        flex-direction: column;
+    }
+
+}
