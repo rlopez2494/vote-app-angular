@@ -1,0 +1,69 @@
+<div class="plate" remove-wrapper>
+
+    <div 
+        class="plate-add"
+        *ngIf="(addPlate)"
+        (click)="onAddPlate()"
+    >
+        <div class="plate-add__container">
+
+            <div class="plate-add__plus-container">
+                <h1 class="plate-add__plus">+</h1>
+            </div>
+
+            <h1 class="plate-add__heading">Agregar plancha</h1>
+
+        </div>
+
+    </div>
+
+    <div class="plate__up">
+
+        <div class="plate__img-container">
+            <img 
+                src="assets/images/plate-img.png"
+                alt="perfil" 
+                class="plate__img"
+            /> 
+        </div>
+        
+        <ul class="plate__bodies">
+        
+            <li class="plate__body">
+                <h5>Junta Directiva</h5>
+                <div class="plate__body--success"></div>
+            </li>
+
+            <li class="plate__body">
+                <h5>Tribunal Disciplinario</h5>
+                <div class="plate__body--success"></div>
+            </li>
+
+            <li class="plate__body">
+                <h5>Asamblea Nacional</h5>
+                <div class="plate__body--success"></div>
+            </li>
+
+            <li class="plate__body">
+                <h5>Junta Directiva de Centro</h5>
+                <div class="plate__body--success"></div>
+            </li>
+
+            <li class="plate__body">
+                <h5>Asamblea de Centro</h5>
+                <div class="plate__body--success"></div>
+            </li>
+
+        </ul>
+            
+    </div>
+    <div class="plate__down">
+        <h2 class="plate__presentation">Plancha Nro.</h2>
+        <input 
+            class="plate__presentation__btn" 
+            type="button" 
+            value="Ver..."
+        />
+    </div>
+
+</div>

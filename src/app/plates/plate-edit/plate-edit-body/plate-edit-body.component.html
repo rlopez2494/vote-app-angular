@@ -1,0 +1,298 @@
+<h2 class="plate-edit__body__heading">Junta Directiva</h2>
+
+<div 
+    class="plate-edit__seat" 
+    *ngIf="hasOwnProperty('presidente')"
+>
+
+    <h4 class="plate-edit__seat__heading">Presidente</h4>
+
+        <div class="plate-edit__check-input">
+
+            <div class="plate-edit__input-autocomplete">
+
+                <input 
+                type="text" 
+                name="presidente"
+                class="plate-edit__input"
+                (keyup)="searchUsers($event)"
+                [value]="body.presidente"
+                placeholder="Ingrese CIV..."
+                />
+
+                <ul 
+                    *ngIf="(listToShow === 'presidente')" 
+                    class="autocomplete"
+                >
+
+                    <li 
+                        *ngIf="loading"
+                        class="autocomplete__item"   
+                    >
+                        
+                        <div class="loading">
+                            <i class="loading--1"></i>
+                            <i class="loading--2"></i>
+                        </div>
+                    
+                    </li>
+
+                    <li 
+                        *ngIf="!(listErrorHandling.hide)"
+                        class="autocomplete__item autocomplete__item--error-message"   
+                    >
+
+                        <p class="autocomplete__item__center">
+                            {{listErrorHandling.message}}
+                        </p>
+                    
+                    </li>
+
+                    <li 
+                        *ngFor="let user of users"
+                        (click)="handleChange('presidente' , user._id)"
+                        class="autocomplete__item"   
+                    >
+                        
+                        <p class="autocomplete__item__right">
+                            {{user.CIV}}
+                        </p>
+
+                        <p class="autocomplete__item__left">
+                            {{user.nombre}}
+                        </p>
+                    
+                    </li>
+
+                </ul>
+
+            </div>
+     
+
+        <div class="plate__body--success"></div>
+    </div>
+
+</div>  
+
+
+<div 
+    class="plate-edit__seat" 
+    *ngIf="hasOwnProperty('vicepresidente')"
+>
+
+    <h4 class="plate-edit__seat__heading">Vicepresidente</h4>
+
+    <div class="plate-edit__check-input">
+
+        <div class="plate-edit__input-autocomplete">
+
+            <input 
+            type="text" 
+            name="vicepresidente"
+            class="plate-edit__input"
+            (keyup)="searchUsers($event)"
+            [value]="body.vicepresidente"
+            placeholder="Ingrese CIV..."
+            />
+
+            <ul 
+                *ngIf="((listToShow === 'vicepresidente'))" 
+                class="autocomplete"
+            >
+
+                <li 
+                    *ngIf="loading"
+                    class="autocomplete__item"   
+                >
+                    
+                    <div class="loading">
+                        <i class="loading--1"></i>
+                        <i class="loading--2"></i>
+                    </div>
+                
+                </li>
+
+                <li 
+                    *ngIf="!(listErrorHandling.hide)"
+                    class="autocomplete__item autocomplete__item--error-message"   
+                >
+
+                    <p class="autocomplete__item__center">
+                        {{listErrorHandling.message}}
+                    </p>
+                
+                </li>
+
+                <li 
+                    *ngFor="let user of users"
+                    (click)="handleChange('vicepresidente' , user._id)"
+                    class="autocomplete__item"   
+                >
+                    
+                    <p class="autocomplete__item__right">
+                        {{user.CIV}}
+                    </p>
+
+                    <p class="autocomplete__item__left">
+                        {{user.nombre}}
+                    </p>
+                
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="plate__body--success"></div>
+    </div>
+
+</div>
+
+
+<div 
+    class="plate-edit__seat"
+    *ngIf="hasOwnProperty('tesorero')"
+>
+
+    <h4 class="plate-edit__seat__heading">Tesorero</h4>
+
+    <div class="plate-edit__check-input">
+
+        <div class="plate-edit__input-autocomplete">
+
+            <input 
+            type="text" 
+            name="tesorero"
+            class="plate-edit__input"
+            (keyup)="searchUsers($event)"
+            [value]="body.tesorero"
+            placeholder="Ingrese CIV..."
+            />
+
+            <ul 
+                *ngIf="((listToShow === 'tesorero'))" 
+                class="autocomplete"
+            >
+
+                <li 
+                    *ngIf="loading"
+                    class="autocomplete__item"   
+                >
+                    
+                    <div class="loading">
+                        <i class="loading--1"></i>
+                        <i class="loading--2"></i>
+                    </div>
+                
+                </li>
+
+                <li 
+                    *ngIf="!(listErrorHandling.hide)"
+                    class="autocomplete__item autocomplete__item--error-message"   
+                >
+
+                    <p class="autocomplete__item__center">
+                        {{listErrorHandling.message}}
+                    </p>
+                
+                </li>
+
+                <li 
+                    *ngFor="let user of users"
+                    (click)="handleChange('tesorero' , user._id)"
+                    class="autocomplete__item"   
+                >
+                    
+                    <p class="autocomplete__item__right">
+                        {{user.CIV}}
+                    </p>
+
+                    <p class="autocomplete__item__left">
+                        {{user.nombre}}
+                    </p>
+                
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="plate__body--success"></div>
+    </div>
+
+</div>
+
+
+<div 
+    class="plate-edit__seat"
+    *ngIf="hasOwnProperty('secretarioGeneral')"
+>
+
+    <h4 class="plate-edit__seat__heading">Secretario General</h4>
+
+    <div class="plate-edit__check-input">
+
+        <div class="plate-edit__input-autocomplete">
+
+            <input 
+            type="text" 
+            name="secretarioGeneral"
+            class="plate-edit__input"
+            (keyup)="searchUsers($event)"
+            [value]="body.secretarioGeneral"
+            placeholder="Ingrese CIV..."
+            />
+
+            <ul 
+                *ngIf="((listToShow === 'secretarioGeneral'))" 
+                class="autocomplete"
+            >
+
+                <li 
+                    *ngIf="loading"
+                    class="autocomplete__item"   
+                >
+                    
+                    <div class="loading">
+                        <i class="loading--1"></i>
+                        <i class="loading--2"></i>
+                    </div>
+                
+                </li>
+
+                <li 
+                    *ngIf="!(listErrorHandling.hide)"
+                    class="autocomplete__item autocomplete__item--error-message"   
+                >
+
+                    <p class="autocomplete__item__center">
+                        {{listErrorHandling.message}}
+                    </p>
+                
+                </li>
+
+                <li 
+                    *ngFor="let user of users"
+                    (click)="handleChange('secretarioGeneral' , user._id)"
+                    class="autocomplete__item"   
+                >
+                    
+                    <p class="autocomplete__item__right">
+                        {{user.CIV}}
+                    </p>
+
+                    <p class="autocomplete__item__left">
+                        {{user.nombre}}
+                    </p>
+                
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="plate__body--success"></div>
+    </div>
+
+</div>
+

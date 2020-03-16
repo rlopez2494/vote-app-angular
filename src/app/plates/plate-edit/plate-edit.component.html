@@ -1,0 +1,29 @@
+<div class="plate-edit main-box">
+    
+    <div class="plate-edit__heading">
+        <h1>REGISTRO DE PLANCHA</h1>
+    </div>
+
+    
+        <app-plate-edit-body 
+            *ngFor="let content of plateContent" 
+            class="plate-edit__body"
+            [plateBody]="plate[content]"
+            [bodyName]="content"
+        >
+            
+        </app-plate-edit-body>
+   
+ 
+    <div>
+
+        <button 
+        class="btn btn--primary"
+        (click)="onSubmitPlate()"
+        >GUARDAR</button>
+
+        <button class="btn btn--warning">CANCELAR</button>
+
+    </div>
+
+</div>

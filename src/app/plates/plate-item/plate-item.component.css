@@ -1,0 +1,248 @@
+/* --------------- Main plate styles --------------- */
+
+.plate {
+    background: #1B252B;
+    border: none;
+    border-radius: 15px;
+    margin: 20px 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.plate__up, .plate__down {
+    display: flex;
+}
+
+.plate__up {
+    margin: 20px auto;
+}
+
+.plate__down {
+    justify-content: space-around;
+    width: 95%;
+    margin: 0 auto 20px auto;
+}
+
+.plate__img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+}
+
+.plate__img {
+    background: white;
+    padding: 30px;
+    border: none;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.plate__bodies {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px; 
+    border-left: 1px solid black;
+}
+
+.plate__body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.plate__body h5{
+    background: white;
+    padding: 0 15px 0px 10px;
+    margin: 4px 0px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    max-width: 300px;
+    min-width: 230px;
+    font-size: 1.1rem;
+}
+
+.plate__body--success {
+    background: #03A50E;
+    border: 5px solid #D6D6D6;
+    border-radius: 50%;
+    padding: 7.2px;
+    margin: 0 12px;
+}
+
+.plate__presentation, .plate__presentation__btn {
+    border: none;
+    border-radius: 5px;
+}
+
+.plate__presentation {
+    background: #1A7AAB;
+    font-size: 40px;
+    margin: 0 5px 0 0;
+    flex-grow: 2;
+    color: #E1FCE8;
+    padding-left: 15px;
+}
+
+.plate__presentation__btn {
+    flex-grow: 1;
+    background: #C46565;
+    color: #E1FCE8;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 0;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.plate__presentation__btn:hover {
+    background: rgb(122, 63, 63);
+}
+
+/* ----------------- Plate details styles ------------------- */
+
+.plate__detalles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 411px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.plate__detalles__nro-plate {
+    background: #1A7AAB;
+    font-weight: bold;
+    margin:0;
+    height: 60px;
+    text-align: center;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plate__detalles__organo--highlight {
+    display: flex;
+}
+
+.plate__detalles__organo {
+    padding: 5px 30px;
+}
+.plate__detalles__organo:nth-child(even) {
+    background: #1B252B;
+    color: white;
+}
+.plate__detalles__organo:nth-child(odd) {
+    background: #CFCFCF;
+}
+.plate__detalles__organo h5:first-child {
+    color: #03A50E;
+    margin-right: 5px;
+}
+.plate__detalles__organo:nth-child(4) {
+    padding-bottom: 60px;
+}
+
+.plate__detalles button {
+    margin: 20px 20px 20px 0; 
+    padding: 10px 15px;
+    background: #C46565;
+    font-size: 20px;
+    color: black;
+    border: none;
+}
+
+
+/* -------------------- Add plate styles ------------------- */
+
+.plate-add {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(215, 249, 225, 0.84);
+    text-align: center;
+    cursor: pointer;
+    transition: background .25s ease;
+}
+
+.plate-add:hover {
+    background: rgba(17, 66, 32, 0.99);
+}
+
+.plate-add:hover 
+.plate-add__heading,
+.plate-add:hover 
+.plate-add__plus {
+    color: #fff;
+}
+
+.plate-add:hover 
+.plate-add__plus-container {
+    border: 10px solid white;
+}
+
+.plate-add__container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.plate-add__heading {
+    width: 245px;
+    font-size: 60px;
+    transition: color .25s ease;
+}
+.plate-add__plus-container {
+    border: 10px solid black;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    transition: border .25s ease;
+}
+.plate-add__plus {
+    font-size: 220px;
+    margin: 0;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transition: color .25s ease;
+}
+
+
+/**************** Media Queries ***************/
+
+@media screen and (max-width: 560px) {
+
+    .plate__img-container {
+        display: none;
+    }
+    #main-section, #header {
+        min-width: 420px;
+    }
+    .plate {
+        width: 90%;
+    }
+    .plate__bodies {
+        width: 90%;
+    }
+    .plate__bodies h5 {
+        font-size: 25px;
+        width: 85%;
+    }
+    .plate-add__container h1:nth-child(2) {
+        display: none;
+    }
+}

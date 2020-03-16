@@ -1,0 +1,9 @@
+.plates {
+    display: flex;
+    align-items: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+

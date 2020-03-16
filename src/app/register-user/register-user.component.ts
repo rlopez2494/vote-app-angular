@@ -44,7 +44,7 @@ export class RegisterUserComponent implements OnInit {
         this.lastName = undefined;
         this.solvent = undefined;
         this.publicKey = undefined;
-        this.msgState = 'searching'
+        this.msgState = 'searching';
         this.loading = true;
 
 

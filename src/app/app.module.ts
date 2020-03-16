@@ -7,22 +7,39 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ViewOption } from './home/view-option/view-option.component';
 import { RemoveWrapper } from './directives/remove-wrapper.directive';
+import { AutoComplete } from './directives/autocomplete.directive';
 import { HomeComponent } from './home/home.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { VoteComponent } from './vote/vote.component';
+import { OrganoComponent } from './vote/organo/organo.component';
+import { PlatesComponent } from './plates/plates.component';
+import { PlateItemComponent } from './plates/plate-item/plate-item.component';
+import { PlateEditComponent } from './plates/plate-edit/plate-edit.component';
+import { HeaderComponent } from './header/header.component';
+import { PlateEditBodyComponent } from './plates/plate-edit/plate-edit-body/plate-edit-body.component';
+import { PlateService } from './plates/plate-edit/plate.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ViewOption,
     RemoveWrapper,
+    AutoComplete,
     HomeComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    VoteComponent,
+    OrganoComponent,
+    PlatesComponent,
+    PlateItemComponent,
+    PlateEditComponent,
+    HeaderComponent,
+    PlateEditBodyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

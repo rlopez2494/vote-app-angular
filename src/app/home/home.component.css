@@ -22,12 +22,6 @@
     color: rgb(56, 56, 56);
 }
 
-.flex-container {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
 .vertical-center {
     position: absolute;
     top: 70%;
