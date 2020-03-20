@@ -23,7 +23,17 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
   body: JuntaDirectiva | TribunalDisciplinario;
 
   listToShow: string;
+
+  signalToCheck: Object = {
+    presidente: null,
+    vicepresidente: null,
+    tesorero: null,
+    secretarioGeneral: null
+  };
+
   loading: boolean = false;  
+
+  
 
   // Error handling (autocomplete list)
   listErrorHandling: ListErrorHandling = {
@@ -42,38 +52,41 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    document.addEventListener('click', (event) => {
+    document.addEventListener('mouseup', (event) => {
 
       const element = event.target as HTMLElement;
-      const { tagName, name, value } = (<HTMLInputElement>element);
+      const { tagName, name, type } = (<HTMLInputElement>element);
+
       if (tagName !== 'P' && tagName !== 'LI') {
         if(tagName === 'INPUT') {
-          if((<HTMLInputElement>element).type !== 'text') { 
-            console.log((<HTMLInputElement>element).name)
-            console.log('hey')
-            this.listToShow = (<HTMLInputElement>element).name;
+          if(type !== 'text') { 
+            this.listToShow = name;
           } 
         } else {
           this.listToShow = null;
         }
       }
 
-      console.log(tagName !== 'P' && tagName !== 'LI')
-      console.log(tagName, (<HTMLInputElement>element).type);
-    }) 
+    }); 
+
   }
 
   handleChange(seatName: string, id: string) {
     this.listToShow = null;
     const user = this.users.find(user => (user._id === id))
-    this.plateService.onEditPlate(this.bodyName, seatName, id);
+    this.plateService.onEditPlate(this.bodyName, seatName, id, user);
     this.body[seatName] = `${user.nombre} (${user.CIV})`
+    this.signalToCheck[seatName] = 'success';
   }
 
-  searchUsers = async(event: any) => {
+  searchUsers(event: any) {
 
     this.listErrorHandling.hide = true;
+
     const element = event.target as HTMLElement;
+    const { name } = (<HTMLInputElement>element);
+
+    this.signalToCheck[name] = 'waiting'
 
         this.users = [];
         if(event.target.value.length > 0) {
@@ -86,14 +99,30 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
             subscription.subscribe((responseData: any) => {
               if(responseData.length > 0) {
                 
-                this.listToShow = (<HTMLInputElement>element).name; 
-                
-                this.users = responseData;
+                this.users = responseData.filter((user: any) => {
+                  let validUser = true;
+
+                  // Filtrar los usuarios que ya han sido seleccionados
+                  Object.keys(this.plateService.plate).forEach(body => {
+                    Object.keys(this.plateService.plate[body]).forEach(seat => {
+                      if (user._id === this.plateService.plate[body][seat]) {
+                        validUser = false;
+                      }
+                    });
+                  });
+
+                  return validUser;
+                });
+
                 this.loading = false;
+                this.listToShow = name;
+                
                 
               }
             }, (err) => {
-              this.listToShow = (<HTMLInputElement>element).name;
+              console.log(err);
+              console.log(err.status);
+              this.listToShow = name;
 
               switch(err.status) {
                 case 404:
@@ -107,6 +136,7 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
           }
         } else {
           this.listToShow = null;
+          this.signalToCheck[name] = null;
         }
         
   }

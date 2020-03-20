@@ -1,5 +1,4 @@
 /* --------------- Main plate styles --------------- */
-
 .plate {
     background: #1B252B;
     border: none;
@@ -198,10 +197,10 @@
     font-size: 60px;
     transition: color .25s ease;
 }
+
 .plate-add__plus-container {
     border: 10px solid black;
     display: flex;
-    position: relative;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -210,6 +209,7 @@
     height: 160px;
     transition: border .25s ease;
 }
+
 .plate-add__plus {
     font-size: 220px;
     margin: 0;
@@ -218,9 +218,9 @@
     justify-content: center;
     align-items: center;
     position: absolute;
+    bottom: 20px;
     transition: color .25s ease;
 }
-
 
 /**************** Media Queries ***************/
 

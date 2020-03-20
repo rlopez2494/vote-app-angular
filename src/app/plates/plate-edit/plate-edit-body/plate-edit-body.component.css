@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     width: 85%;
+    padding: 3px 0;
     background: #1C1A1A;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -26,7 +27,7 @@
 
 .autocomplete {
     position: absolute;
-    top: 30px;
+    top: 35px;
     list-style-type: none;
     width: 100%;
     min-height: 40px;
@@ -95,22 +96,34 @@
     font-weight: 400;
     position: relative;
     left: 15px;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .plate-edit__input {
-    border-radius: 5px;
+    border-radius: 3px;
     outline: none;
-    padding: 3px;
+    padding: 4px 5px;
     width: 100%;
+    font-size: 1.05rem;
 }
 
-.plate__body--success {
-    background: #03A50E;
+.signal {
+    background: rgb(27, 27, 27);
     border: 5px solid #D6D6D6;
     border-radius: 50%;
     padding: 7.2px;
     margin: 0 12px;
+    transition: background .15s ease;
+}
+
+.signal--success {
+    background: #03A50E;
+}
+.signal--warning {
+    background: rgb(212, 12, 12);
+}
+.signal--waiting {
+    background-color: rgb(184, 184, 2);
 }
 
 @media screen and (max-width: 700px) {

@@ -1,0 +1,53 @@
+<div class="plate-edit__details">
+
+    <h3 class="plate-edit__details__heading">CONFIRMAR</h3>      
+
+    <div 
+        class="plate-edit__details__body"
+        *ngFor="let bodyName of bodyNames">
+        <div class="plate-edit__details__highlight">
+            <h5>---</h5>
+            <h4>{{bodyName}}</h4>
+        </div>
+        
+        <ul class="plate-edit__list">                 
+            
+            <ng-container *ngFor="let seat of getSeats(bodyName)">
+                <li 
+                class="plate-edit__list-item"
+                *ngIf="!(seat === '_id')">
+
+                <p>
+                    <em>
+                        {{seat}}:     
+                    </em>
+
+                    {{plateInput[bodyName][seat].user.nombre}}  {{plateInput[bodyName][seat].user['CIV']}}
+
+                </p>
+
+                </li>
+            </ng-container>
+            
+                    
+        </ul>
+
+    </div>
+    
+    <div class="block-center">
+
+        <button 
+            *ngIf="(locationUrl === '/plates/plateEdit')" 
+            class="btn btn--primary btn--confirm"
+        >Confirmar y Guardar</button>
+
+        <button
+            class="btn btn--primary btn--confirm"
+            (click)="onCloseDetails()"
+        >Volver</button>
+
+    </div>
+    
+
+</div>  
+

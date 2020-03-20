@@ -1,28 +1,76 @@
 <div class="plate-edit main-box">
     
+    <div class="over" *ngIf="showDetails">
+
+        <div class="plate-edit__details">
+
+            <h3 class="plate-edit__details__heading">CONFIRMAR</h3>      
+
+            <div 
+                class="plate-edit__details__body"
+                *ngFor="let body of plateNamesBodies">
+                <div class="plate-edit__details__highlight">
+                    <h5>---</h5>
+                    <h4>{{body}}</h4>
+                </div>
+                
+                <ul class="plate-edit__list">                 
+                       
+                    <li 
+                        class="plate-edit__list-item"
+                        *ngFor="let seat of getSeats(body)">
+                        <p><em>{{seat}}:     </em>{{plateNames[body][seat]}} </p>
+                    </li>
+                          
+                </ul>
+
+            </div>
+
+            
+            <div class="block-center">
+
+                <button 
+                    (click)="onSubmitRequest()"
+                    class="btn btn--primary btn--confirm"
+                >Confirmar y Guardar</button>
+
+                <button
+                    class="btn btn--primary btn--confirm"
+                    (click)="closeDetails()"
+                >Volver</button>
+
+            </div>
+            
+
+        </div>  
+
+    </div>
+
+
     <div class="plate-edit__heading">
         <h1>REGISTRO DE PLANCHA</h1>
     </div>
-
     
-        <app-plate-edit-body 
-            *ngFor="let content of plateContent" 
-            class="plate-edit__body"
-            [plateBody]="plate[content]"
-            [bodyName]="content"
-        >
-            
-        </app-plate-edit-body>
+    <app-plate-edit-body 
+        *ngFor="let content of plateContent" 
+        class="plate-edit__body"
+        [plateBody]="plate[content]"
+        [bodyName]="content"
+    >  
+    </app-plate-edit-body>
    
  
     <div>
 
         <button 
-        class="btn btn--primary"
-        (click)="onSubmitPlate()"
+            class="btn btn--primary"
+            (click)="onSubmitPlate()"
         >GUARDAR</button>
 
-        <button class="btn btn--warning">CANCELAR</button>
+        <button
+            class="btn btn--warning"
+            (click)="onCancelSubmit()"
+        >CANCELAR</button>
 
     </div>
 

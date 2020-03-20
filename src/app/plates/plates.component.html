@@ -1,8 +1,27 @@
 <div class="plates">
-
-    <app-plate-item></app-plate-item>
-
-    <app-plate-item [addPlate]="true"></app-plate-item>
-
     
+    <app-plate-details
+        *ngIf="showDetails"
+        class="over"
+        (close)="onDetailsClosed()"
+        [plate]="plateDetails">
+        
+    </app-plate-details>
+
+    <ng-container *ngFor="let plate of plates">
+        
+        <app-plate-item
+            class="plate"
+            [plate]="plate"
+            (showPlate)="onDetailsShowed($event)">
+        </app-plate-item>
+
+    </ng-container>
+
+    <app-plate-item 
+        *ngIf="showPlates"
+        [addPlate]="true">
+            
+    </app-plate-item>
+
 </div>

@@ -69,7 +69,15 @@
             </div>
      
 
-        <div class="plate__body--success"></div>
+        <div 
+            class="signal"
+            [ngClass]="{
+                'signal--success': signalToCheck.presidente === 'success',
+                'signal--waiting': signalToCheck.presidente === 'waiting',
+                'signal--warning': signalToCheck.presidente === 'warning'
+            }">
+            
+        </div>
     </div>
 
 </div>  
@@ -143,7 +151,14 @@
 
         </div>
 
-        <div class="plate__body--success"></div>
+        <div 
+            class="signal"
+            [ngClass]="{
+                'signal--success': signalToCheck.vicepresidente === 'success',
+                'signal--waiting': signalToCheck.vicepresidente === 'waiting',
+                'signal--warning': signalToCheck.vicepresidente === 'warning'
+            }">
+            </div>
     </div>
 
 </div>
@@ -217,7 +232,14 @@
 
         </div>
 
-        <div class="plate__body--success"></div>
+        <div 
+            class="signal"
+            [ngClass]="{
+                'signal--success': signalToCheck.tesorero === 'success',
+                'signal--waiting': signalToCheck.tesorero === 'waiting',
+                'signal--warning': signalToCheck.tesorero === 'warning'
+            }">
+            </div>
     </div>
 
 </div>
@@ -291,7 +313,14 @@
 
         </div>
 
-        <div class="plate__body--success"></div>
+        <div 
+            class="signal"
+            [ngClass]="{
+                'signal--success': signalToCheck.secretarioGeneral === 'success',
+                'signal--waiting': signalToCheck.secretarioGeneral === 'waiting',
+                'signal--warning': signalToCheck.secretarioGeneral === 'warning'
+            }">
+            </div>
     </div>
 
 </div>
