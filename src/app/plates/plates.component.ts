@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./plates.component.css']
 })
 
-export class PlatesComponent implements OnInit {
+export class PlatesComponent implements OnInit, AfterViewInit {
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
@@ -17,7 +17,9 @@ export class PlatesComponent implements OnInit {
   showDetails: boolean = false;
   showPlates: boolean = false;
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  ngAfterViewInit() {
 
     const urlString = 'http://localhost:9000/plates';
     
@@ -28,7 +30,7 @@ export class PlatesComponent implements OnInit {
       }, (err) => {
         console.log(err);
       })
-      
+
   }
 
   onDetailsShowed(event: Object){

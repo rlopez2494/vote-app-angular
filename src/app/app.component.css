@@ -19,6 +19,17 @@ body {
     url("../assets/images/background.png")
     no-repeat center center fixed;
     --color-disabled-1: rgb(212, 212, 212);
+
+    /* Grey Palette */
+    --grey-1: #707070;
+    --grey-9: #E4F0F6;
+
+    /* Red Palette */
+    --red-4: #C46565;
+
+    /* Blue Palette */
+    --blue-2: #032340;
+    --blue-9: #D4E2E9;
 }
 
 .flex-container {

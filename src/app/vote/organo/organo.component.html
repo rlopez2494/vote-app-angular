@@ -1,1 +1,82 @@
-<p>organo works!</p>
+<div class="organo">
+
+    <h1>{{organo.name}}</h1>
+
+    <div class="organo__choices">
+
+        <div class="organo__HEAD">
+
+            <ul>
+                <li>Presidente</li>
+                <li>Vicepresidente</li>
+                <li *ngIf="organo.name !== 'Tribunal Disciplinario'">Tesorero</li>
+                <li>Secretario General</li>
+                    
+                <li>
+                    <p>1er. Vocal</p>
+                    <p>2do. Vocal</p>
+                    <p>3er.Vocal</p>
+                </li>
+
+            </ul>
+
+        </div>
+        
+        <div 
+            class="organo__plancha"
+            *ngFor="let plancha of organo.planchas; let i = index">
+            <ul>
+
+                <li>
+                    <p>Seleccionar Todo</p>
+                    <input 
+                        type="checkbox" 
+                        name="" 
+                        id=""
+                        (click)="onSelectPlate($event, i)"
+                    />
+                </li>
+
+                <li>
+                    <h5>PLANCHA N {{i}}</h5>
+                </li>
+
+                
+                <li *ngFor="let seat of seatNames">
+                    <p>{{organo.planchas[i][seat].user.nombre}}</p>
+                    
+                    <input 
+                        type="checkbox" 
+                        name="" 
+                        id=""
+                        (click)="onChange(
+                            organo, 
+                            i, 
+                            seat,
+                            organo.planchas[i][seat].user._id
+                        )"
+                        [checked]="isSelected(
+                            organo,  
+                            seat,
+                            organo.planchas[i][seat].user._id
+                        )"
+                    />
+                </li>
+           
+
+                <li>
+                    <h5>VOTO LISTA</h5>
+                    <input 
+                        type="checkbox" 
+                        name="" 
+                        id=""
+                    />
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>

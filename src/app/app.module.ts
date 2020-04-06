@@ -17,7 +17,6 @@ import { PlateItemComponent } from './plates/plate-item/plate-item.component';
 import { PlateEditComponent } from './plates/plate-edit/plate-edit.component';
 import { HeaderComponent } from './header/header.component';
 import { PlateEditBodyComponent } from './plates/plate-edit/plate-edit-body/plate-edit-body.component';
-import { PlateService } from './plates/plate-edit/plate.service';
 import { PlateDetailsComponent } from './plates/plate-details/plate-details.component';
 
 

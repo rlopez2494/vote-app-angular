@@ -1,3 +1,14 @@
-<div class="vote">
-    EPALES
+<div class="voto">
+
+    <div>
+        <h1>ORGANOS NACIONALES</h1>
+    </div>
+    
+    <app-organo 
+        *ngFor="let organo of organos"
+        [organo]="organo">
+
+    </app-organo>
+    
 </div>
+

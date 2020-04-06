@@ -11,7 +11,7 @@ import { PlateEditComponent } from './plates/plate-edit/plate-edit.component';
 const routes: Routes = [
   { path:'', component: HomeComponent },
   { path:'registro-usuario', component: RegisterUserComponent },
-  { path: 'vote', component: VoteComponent },
+  { path: 'voto', component: VoteComponent },
   { path: 'plates', component: PlatesComponent },
   { path: 'plates/plateEdit', component: PlateEditComponent }
 ];

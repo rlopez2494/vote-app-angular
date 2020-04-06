@@ -1,0 +1,88 @@
+.organo {
+    background: #B1B1B1;
+    border: 1px solid #707070;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 900px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.organo h1 {
+    margin-left: 40px;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+.organo ul li {
+    border: 1px solid var(--grey-1);
+    background: var(--grey-9);
+    display: flex;
+    align-items: center;
+    height: 38px;
+}
+
+.organo ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.organo__HEAD{
+    width: 150px;
+}
+
+.organo__HEAD ul li {
+    padding-left: 10px;
+}
+
+.organo__HEAD ul li:last-child {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.organo__HEAD ul p {
+    padding: 0;
+    margin: 0;
+}
+
+
+.organo__choices {
+    display: flex;
+    align-items: flex-end;
+    margin: 20px 40px;
+}
+.organo__choices ul li:last-child {
+    height: 75px;
+}
+
+.organo__plancha {
+   flex-grow: 2;
+}
+.organo__plancha button {
+    height: 25px;
+    width: 35px;
+    border-radius: 50%;
+    border: 2px solid var(--blue-2);
+    outline: none;
+    background: var(--grey-9);
+}
+.organo__plancha input:checked {
+    background: var(--grey-1);
+}
+
+.organo__plancha ul li:nth-child(2) {
+    background: var(--red-4);
+    color: var(--grey-9);
+    justify-content: center;
+}
+
+.organo__plancha ul li:nth-child(n+3):nth-last-child(n+2) {
+    background: var(--blue-9);
+}
+
+.organo__plancha ul li {
+    justify-content: space-between;
+    padding: 0 15px;
+}
