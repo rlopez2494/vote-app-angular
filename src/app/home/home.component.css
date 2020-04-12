@@ -1,39 +1,183 @@
-.half-screen {
-    height: 50vh;
-    text-align: center;
-    position: relative;
-    padding-top: 15px;
-    /* background-color: rgba(223, 223, 223, 0.8); */
+.home {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.half-screen__heading {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 100;
-    text-transform: uppercase;
-    letter-spacing: 10px;
-    font-size: 1.7rem;
-    border: 1px solid #636363;
-    border-radius: 5px;
-    padding: 15px 0;
-    width: 420px;
-    min-width: auto;
-    margin: 0 auto;
-    box-shadow: inset 0px 0px 2px rgb(56, 56, 56);
-    color: rgb(56, 56, 56);
-}
-
-.vertical-center {
+.login__heading {
+    border-radius: 10px;
+    color: #333333;
+    background-color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5px 20px;
     position: absolute;
-    top: 70%;
     left: 50%;
-    transform: translate(-50%, -70%);
+    transform: translate(-50%);
+    top: -22px
+}
+
+/************************LOGIN FORM*****************************/
+.login {
+    position: relative;
+    width: 400px;
+    background-color: #333333;
+    border: none;
+    border-radius: 5px;
+    padding: 30px 0 25px 0;
+}
+
+.login__form {
+    width: 100%;
+}
+
+.login__input-errors {
+    color: rgb(255, 109, 109);
+}
+
+.login__input-group {
+    margin: auto;
+    text-align: left;
+    width: 90%;
+}
+
+.login__input-group:first-child {
+    margin-bottom: 25px;
+}
+
+.login__input {
+    border: 1px solid rgb(7, 116, 150);
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+    bottom: 20px;
+    outline: none;
+}
+
+.login__input[type="email"].ng-invalid.ng-dirty {
+    border: 1px solid rgb(255, 66, 66);
+}
+
+.login__btn {
+    width: 120px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.login__btn--primary {
+    background: rgb(19, 128, 155);
+}
+
+.login__btn--primary:hover {
+    background: rgb(22, 150, 182);
+}
+
+.login__btn--primary:disabled {
+    cursor: auto;
+    background: rgb(143, 143, 143);
+    color: #e4e4e4;
+}
+
+.login__btn--secondary {
+    background: rgb(17, 153, 96);
+}
+
+.login__btn--secondary:hover {
+    background: rgb(20, 184, 116);
 }
 
 
 
-@media only screen and (max-width: 690px) {
-    .flex-container {
-        flex-direction: column;
+.login__buttons{
+    display: flex;
+    justify-content: space-around; 
+    width: 100%;
+    margin: 10px auto 0 auto;
+}
+
+
+/*******************************LOGIN FIELDS*******************************/
+
+.login__link {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.login__link-container {
+    text-align: right;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.login__input-label {
+    font-size: 1.05rem;
+    text-align: left;
+    color: #ffffff;
+}
+
+
+/******************************* MISCUE ***********************************/
+.login__box {
+    text-align: center;
+    width: 100%;
+}
+
+.login__error-box {
+    margin: 20px auto 0 auto;
+    width: 90%;
+}
+
+.paragraph--error {
+    color: rgb(221, 16, 16);
+    padding: 0;
+    display: inline;
+}
+
+/***************************** MEDIA QUERIES ****************************/
+@media screen and (max-width: 790px) {
+    .realizado-por {
+        display: none;
+    }
+
+    .login-footer {
+        text-align: center;
+    }
+    .udo-nombre {
+        float: none;
+    }
+}
+
+@media screen and (max-width: 430px) {
+
+    .login {
+        width: 92%;
+    }
+
+    .login__input {
+        font-size: 80%;
+        font-weight: bold;
     }
 
 }
+
+@media screen and (max-width: 360px) {
+    .login__buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login__btn {
+        margin-bottom: 10px;
+    }
+}
+

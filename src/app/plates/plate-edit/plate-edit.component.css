@@ -5,6 +5,12 @@
     margin: 20px auto;
 }
 
+.plate-edit__form {
+    width: 80%;
+    max-width: 850px;
+    margin: auto;
+}
+
 .plate-edit__heading {
     background: #373737;
     color: white;
@@ -24,7 +30,7 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 20px;
-    margin-bottom: 15px;
+    margin: 0 auto 15px auto;
 }
 
 .main-box {

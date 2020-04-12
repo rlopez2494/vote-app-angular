@@ -2,10 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; 
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ViewOption } from './home/view-option/view-option.component';
 import { RemoveWrapper } from './directives/remove-wrapper.directive';
 import { AutoComplete } from './directives/autocomplete.directive';
 import { HomeComponent } from './home/home.component';
@@ -18,12 +18,14 @@ import { PlateEditComponent } from './plates/plate-edit/plate-edit.component';
 import { HeaderComponent } from './header/header.component';
 import { PlateEditBodyComponent } from './plates/plate-edit/plate-edit-body/plate-edit-body.component';
 import { PlateDetailsComponent } from './plates/plate-details/plate-details.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthGuard } from './auth-guard.service';
+import { AuthService } from './auth.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ViewOption,
     RemoveWrapper,
     AutoComplete,
     HomeComponent,
@@ -35,15 +37,17 @@ import { PlateDetailsComponent } from './plates/plate-details/plate-details.comp
     PlateEditComponent,
     HeaderComponent,
     PlateEditBodyComponent,
-    PlateDetailsComponent
+    PlateDetailsComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

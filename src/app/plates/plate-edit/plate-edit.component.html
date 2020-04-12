@@ -11,7 +11,7 @@
                 *ngFor="let body of plateNamesBodies">
                 <div class="plate-edit__details__highlight">
                     <h5>---</h5>
-                    <h4>{{body}}</h4>
+                    <h4>{{ body }}</h4>
                 </div>
                 
                 <ul class="plate-edit__list">                 
@@ -50,28 +50,31 @@
     <div class="plate-edit__heading">
         <h1>REGISTRO DE PLANCHA</h1>
     </div>
-    
-    <app-plate-edit-body 
+
+    <form class="plate-edit__form" >
+
+        <app-plate-edit-body 
         *ngFor="let content of plateContent" 
         class="plate-edit__body"
         [plateBody]="plate[content]"
         [bodyName]="content"
-    >  
-    </app-plate-edit-body>
-   
- 
-    <div>
+        >  
+        </app-plate-edit-body>
 
-        <button 
-            class="btn btn--primary"
-            (click)="onSubmitPlate()"
-        >GUARDAR</button>
+        <div>
 
-        <button
-            class="btn btn--warning"
-            (click)="onCancelSubmit()"
-        >CANCELAR</button>
+            <button 
+                class="btn btn--primary"
+                (click)="onSubmitPlate()"
+            >GUARDAR</button>
+    
+            <button
+                class="btn btn--warning"
+                (click)="onCancelSubmit()"
+            >CANCELAR</button>
+    
+        </div>
 
-    </div>
-
+    </form>
+    
 </div>

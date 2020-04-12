@@ -1,4 +1,4 @@
-<div class="header" *ngIf="show">
+<div class="header">
 
     <div class="header__container">
         
@@ -16,7 +16,7 @@
 
         </div>
 
-        <a class="header__nav" href="#">ADMIN</a> 
+        <a class="header__nav" [routerLink]="urlString">{{urlName}}</a> 
     
     </div>
 </div>

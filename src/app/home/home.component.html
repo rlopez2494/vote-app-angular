@@ -1,44 +1,78 @@
-<div class="half-screen half-screen--top">
+<div class="home">
 
-  <h2 class="half-screen__heading">Administrador</h2>
-
-  <div class="flex-container vertical-center">
+  <div class="login">
     
-    <app-view-option
-      [headingText]="'Registrar Usuario'"
-      [imgSrc]="'assets/images/registro-usuario.png'"
-    ></app-view-option>
+    <p class="login__heading">LOG IN</p>
+  
+    <form class="login__form" (ngSubmit)="onSubmit(f)" #f="ngForm">
 
-    <app-view-option
-      [headingText]="'Miembro de mesa'"
-      [imgSrc]="'assets/images/miembro-mesa.png'"
-    ></app-view-option>
+        <div class="login__box">
 
-    <app-view-option
-      [headingText]="'Registrar plancha'"
-      [imgSrc]="'assets/images/registro-plancha.png'"
-    ></app-view-option>
+            <div class="login__input-group">
+                <label class="login__input-label" for="email">Email</label>
+                <input
+                id="email" 
+                class="login__input"
+                name="email"
+                type="email"  
+                placeholder="user@account.com"
+                ngModel
+                required
+                email
+                #email="ngModel"
+                />
+                <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p>
+            </div>
 
-  </div>
+            <div class="login__input-group">
+                <label class="login__input-label" for="password">Password</label>
+                <input 
+                id="password"
+                class="login__input"
+                name="password"
+                type="password"
+                ngModel
+                required
+                />
+            </div>
 
-</div>
+            <!-- <div class="login__error-box">
+                <img 
+                    class="login__img login__img--warning"
+                    alt="warning" 
+                    width="20" 
+                    height="20"
+                />
+                
+                <p class="paragraph paragraph--error">Error message</p>                            
+                
+            </div> -->
 
-<div class="half-screen half-screen--bottom">
+            <div class="login__link-container">
+                <a class="login__link" href="#">Forgot your password?</a>
+            </div>
 
-  <h2 class="half-screen__heading">Usuario</h2>
+            <div class="login__buttons">
 
-  <div class="flex-container vertical-center">
+                <button
+                    class="login__btn login__btn--primary"
+                    type="submit"
+                    [disabled]="(!f.touched || !f.valid)"
+                    >LOG IN
+                </button>
+            
+        
+                <button 
+                    class="login__btn login__btn--secondary"
+                    >SIGN UP
+                </button>
+        
+            </div>
+
+        </div> 
+  
+    </form>
     
-    <app-view-option
-      [headingText]="'Realizar voto'"
-      [imgSrc]="'assets/images/voto.png'"
-    ></app-view-option>
-
-    <app-view-option
-      [headingText]="'Conteo de votos'"
-      [imgSrc]="'assets/images/resultados.png'"
-    ></app-view-option>
-
   </div>
 
 </div>

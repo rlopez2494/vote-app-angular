@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Plate } from 'src/app/models/plate.model';
 import { PlateService } from './plate.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-plate-edit',
@@ -16,6 +17,8 @@ export class PlateEditComponent implements OnInit {
     private plateService: PlateService,
     private router: Router,
     private route: ActivatedRoute) { }
+  
+  plateSubmission: FormGroup;
 
   hidden: boolean = true;
 
@@ -30,13 +33,32 @@ export class PlateEditComponent implements OnInit {
   showDetails: boolean = false;
 
   ngOnInit() {
+    this.plateSubmission = new FormGroup({
+      'directiveBoard': new FormGroup({
+        'president': new FormControl(null),
+        'vicepresident': new FormControl(null),
+        'treasurer': new FormControl(null),
+        'generalSecretary': new FormControl(null)
+      }),
+      'municipalityDirectiveBoard': new FormGroup({
+        'president': new FormControl(null),
+        'vicepresident': new FormControl(null),
+        'treasurer': new FormControl(null),
+        'generalSecretary': new FormControl(null)
+      }),
+      'disciplinaryCourt': new FormGroup({
+        'president': new FormControl(null),
+        'vicepresident': new FormControl(null),
+        'generalSecretary': new FormControl(null)
+      })
+    })
   }
 
   onCancelSubmit() {
     this.router.navigate(['..'], { relativeTo: this.route });
   }
 
-  getSeats(body) {
+  getSeats(body: string) {
     return Object.keys(this.plateNames[body])
   }
 

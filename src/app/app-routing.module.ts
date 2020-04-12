@@ -6,14 +6,18 @@ import { RegisterUserComponent } from './register-user/register-user.component';
 import { VoteComponent } from './vote/vote.component';
 import { PlatesComponent } from './plates/plates.component';
 import { PlateEditComponent } from './plates/plate-edit/plate-edit.component';
-
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component'; 
+import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [
   { path:'', component: HomeComponent },
+  { path:'admin', component: HomeComponent },
   { path:'registro-usuario', component: RegisterUserComponent },
-  { path: 'voto', component: VoteComponent },
+  { path: 'voto', canActivate:[AuthGuard] ,component: VoteComponent },
   { path: 'plates', component: PlatesComponent },
-  { path: 'plates/plateEdit', component: PlateEditComponent }
+  { path: 'plates/plateEdit', canActivate: [AuthGuard] ,component: PlateEditComponent },
+  { path: 'not-found', component: PageNotFoundComponent },
+  { path: '**', redirectTo: '/not-found' }
 ];
 
 @NgModule({
