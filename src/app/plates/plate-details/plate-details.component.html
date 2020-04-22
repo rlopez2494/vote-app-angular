@@ -46,6 +46,12 @@
             (click)="onCloseDetails()"
         >Volver</button>
 
+        <button
+            class="btn btn--primary btn--confirm"
+            (click)="onDeletePlate()"
+            *ngIf="(locationUrl === '/plates')"
+        >Eliminar</button>
+
     </div>
     
 

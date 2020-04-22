@@ -1,80 +1,133 @@
 <div class="plate-edit main-box">
-    
-    <div class="over" *ngIf="showDetails">
-
-        <div class="plate-edit__details">
-
-            <h3 class="plate-edit__details__heading">CONFIRMAR</h3>      
-
-            <div 
-                class="plate-edit__details__body"
-                *ngFor="let body of plateNamesBodies">
-                <div class="plate-edit__details__highlight">
-                    <h5>---</h5>
-                    <h4>{{ body }}</h4>
-                </div>
-                
-                <ul class="plate-edit__list">                 
-                       
-                    <li 
-                        class="plate-edit__list-item"
-                        *ngFor="let seat of getSeats(body)">
-                        <p><em>{{seat}}:     </em>{{plateNames[body][seat]}} </p>
-                    </li>
-                          
-                </ul>
-
-            </div>
-
-            
-            <div class="block-center">
-
-                <button 
-                    (click)="onSubmitRequest()"
-                    class="btn btn--primary btn--confirm"
-                >Confirmar y Guardar</button>
-
-                <button
-                    class="btn btn--primary btn--confirm"
-                    (click)="closeDetails()"
-                >Volver</button>
-
-            </div>
-            
-
-        </div>  
-
-    </div>
-
 
     <div class="plate-edit__heading">
         <h1>REGISTRO DE PLANCHA</h1>
     </div>
+    
+    <form 
+        class="plate-edit__form"
+        [formGroup]="plateSubmission"
+        (ngSubmit)="submitPlate()"
+        autocomplete="off">
 
-    <form class="plate-edit__form" >
+        <div class="over" *ngIf="showDetails">
+
+            <div class="plate-edit__details">
+    
+                <h3 class="plate-edit__details__heading">CONFIRMAR</h3>      
+            
+                <div 
+                class="plate-edit__details__body"
+                *ngFor="let body of getShowcaseSeats()">
+                    
+                    <div 
+                        class="plate-edit__details__highlight">
+                        <h5>---</h5>
+                        <h4 *ngIf="body === 'directiveBoard'">Directive Board</h4>
+                        <h4 *ngIf="body === 'districtDirectiveBoard'">District Directive Board</h4>
+                        <h4 *ngIf="body === 'disciplinaryCourt'">Disciplinary Court</h4>
+                    </div>
+            
+                    <ul class="plate-edit__list">                 
+                           
+                        <li class="plate-edit__list-item">
+                            <p>
+                                <em>Presidente: </em>
+                                {{confirmPlate[body]['president'].nombre}} |
+                                {{confirmPlate[body]['president'].CIV}}
+                            </p>
+                        </li>
+                        <li class="plate-edit__list-item">
+                            <p>
+                                <em>Vicepresidente: </em>
+                                {{confirmPlate[body]['vicepresident'].nombre}} |
+                                {{confirmPlate[body]['vicepresident'].CIV}}
+                            </p>
+                        </li>
+                        <li 
+                        class="plate-edit__list-item"
+                        *ngIf="confirmPlate[body]['treasurer']">
+                            <p>
+                                <em>Tesorero: </em>
+                                {{confirmPlate[body]['treasurer'].nombre}} |
+                                {{confirmPlate[body]['treasurer'].CIV}}
+                            </p>
+                        </li>
+                        <li class="plate-edit__list-item">
+                            <p>
+                                <em>Secretario General: </em>
+                                {{confirmPlate[body]['generalSecretary'].nombre}} |
+                                {{confirmPlate[body]['generalSecretary'].CIV}}
+                            </p>
+                        </li>
+                              
+                    </ul>
+            
+                </div>
+            
+                
+                <div class="block-center">
+            
+                    <button 
+                        type="submit"
+                        class="btn btn--primary btn--confirm"
+                    >Confirmar y Guardar</button>
+            
+                    <button
+                        class="btn btn--primary btn--confirm"
+                        (click)="closeDetails()"
+                    >Volver</button>
+            
+                </div>
+                
+            
+            </div>
+
+        </div>
+ 
 
         <app-plate-edit-body 
-        *ngFor="let content of plateContent" 
-        class="plate-edit__body"
-        [plateBody]="plate[content]"
-        [bodyName]="content"
-        >  
+            formGroupName="directiveBoard"
+            class="plate-edit__body"
+            [plateBody]="plateSubmission.value.directiveBoard"
+            [bodyName]="'directiveBoard'">
+
         </app-plate-edit-body>
 
-        <div>
+        <app-plate-edit-body 
+            formGroupName="districtDirectiveBoard"
+            class="plate-edit__body"
+            [plateBody]="plateSubmission.value.districtDirectiveBoard"
+            [bodyName]="'districtDirectiveBoard'">
+
+        </app-plate-edit-body>
+
+        <app-plate-edit-body 
+            formGroupName="disciplinaryCourt"
+            class="plate-edit__body"
+            [plateBody]="plateSubmission.value.disciplinaryCourt"
+            [bodyName]="'disciplinaryCourt'">
+
+        </app-plate-edit-body>
+    
+    
+        <div style="text-align: center;">
 
             <button 
+                type="button"
                 class="btn btn--primary"
                 (click)="onSubmitPlate()"
+                [disabled]="(!plateSubmission.touched || !plateSubmission.valid)"
             >GUARDAR</button>
-    
+
             <button
+                type="button"
                 class="btn btn--warning"
                 (click)="onCancelSubmit()"
             >CANCELAR</button>
-    
+
         </div>
 
     </form>
-    
+
 </div>

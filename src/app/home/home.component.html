@@ -55,7 +55,7 @@
             <div class="login__buttons">
 
                 <button
-                    class="login__btn login__btn--primary"
+                    class="btn btn--primary"
                     type="submit"
                     [disabled]="(!f.touched || !f.valid)"
                     >LOG IN
@@ -63,7 +63,8 @@
             
         
                 <button 
-                    class="login__btn login__btn--secondary"
+                    [routerLink]="['/signup']"
+                    class="btn btn--secondary"
                     >SIGN UP
                 </button>
         

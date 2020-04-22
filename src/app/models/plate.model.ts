@@ -1,37 +1,39 @@
-export class JuntaDirectiva {
+export class DirectiveBoard {
     constructor(
-        public presidente: string,
-        public vicepresidente: string,
-        public tesorero: string,
-        public secretarioGeneral: string
+        public president: string,
+        public vicepresident: string,
+        public treasurer: string,
+        public generalSecretary: string
     ) {
-        this.presidente = presidente;
-        this.vicepresidente = vicepresidente;
-        this.tesorero = tesorero;
-        this.secretarioGeneral = secretarioGeneral;
+        this.president = president;
+        this.vicepresident = vicepresident;
+        this.treasurer = treasurer;
+        this.generalSecretary = generalSecretary;
     }
 }
 
-export class TribunalDisciplinario {
+export class DisciplinaryCourt {
     constructor(
-        public presidente: string,
-        public vicepresidente: string,
-        public secretarioGeneral: string
+        public president: string,
+        public vicepresident: string,
+        public generalSecretary: string
     ) {
-        this.presidente = presidente;
-        this.vicepresidente = vicepresidente;
-        this.secretarioGeneral = secretarioGeneral;
+        this.president = president;
+        this.vicepresident = vicepresident;
+        this.generalSecretary = generalSecretary;
     }
 }
 
 export class Plate {
     constructor(
-        public juntaDirectiva: JuntaDirectiva,
-        public juntaDirectivaDeCentro: JuntaDirectiva,
-        public tribunalDisciplinario: TribunalDisciplinario
+        public directiveBoard: DirectiveBoard,
+        public districtDirectiveBoard: DirectiveBoard,
+        public disciplinaryCourt: DisciplinaryCourt,
+        public _id?: string,
     ) {
-        this.juntaDirectiva = juntaDirectiva;
-        this.tribunalDisciplinario = tribunalDisciplinario;
-        this.juntaDirectivaDeCentro = juntaDirectivaDeCentro;
+        this.directiveBoard = directiveBoard;
+        this.disciplinaryCourt = disciplinaryCourt;
+        this.districtDirectiveBoard = districtDirectiveBoard;
+        this._id = _id;
     }
 }

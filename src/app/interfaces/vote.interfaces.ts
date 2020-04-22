@@ -1,6 +1,6 @@
-import { TribunalDisciplinario, JuntaDirectiva } from '../models/plate.model';
+import { DisciplinaryCourt, DirectiveBoard } from '../models/plate.model';
 
-export interface Organo{
+export interface Body{
     name: string,
-    planchas: TribunalDisciplinario | JuntaDirectiva []
+    plates: DisciplinaryCourt | DirectiveBoard []
 }

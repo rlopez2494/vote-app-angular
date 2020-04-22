@@ -4,7 +4,8 @@
         *ngIf="showDetails"
         class="over"
         (close)="onDetailsClosed()"
-        [plate]="plateDetails">
+        [plate]="plateDetails"
+        (delete)="onSubmitDeletePlate($event)">
         
     </app-plate-details>
 
@@ -19,7 +20,7 @@
     </ng-container>
 
     <app-plate-item 
-        *ngIf="showPlates"
+        *ngIf="showPlates && (plates.length < 3)"
         [addPlate]="true">
             
     </app-plate-item>

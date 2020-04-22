@@ -1,38 +1,53 @@
-import { Component, OnInit, EventEmitter, Output, Input, AfterViewInit } from '@angular/core';
-import { Plate, JuntaDirectiva, TribunalDisciplinario } from 'src/app/models/plate.model';
+import { 
+  Component, 
+  OnInit, 
+  EventEmitter, 
+  Output, 
+  Input 
+} from '@angular/core';
+import { Plate } from 'src/app/models/plate.model';
+import { PlateService } from '../plate.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-plate-details',
   templateUrl: './plate-details.component.html',
   styleUrls: ['./plate-details.component.css']
 })
-export class PlateDetailsComponent implements OnInit, AfterViewInit {
+export class PlateDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private plateService: PlateService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
-  @Output() close: EventEmitter<any> = new EventEmitter()
+  @Output() close: EventEmitter<any> = new EventEmitter();
+  @Output() delete: EventEmitter<any> = new EventEmitter();
   @Input('plate') plateInput: Plate;
   bodyNames: string[];
+  locationUrl: string;
 
   ngOnInit() {
     if (Object.keys(this.plateInput).length > 0) {
-
       const { 
-        juntaDirectiva, 
-        tribunalDisciplinario, 
-        juntaDirectivaDeCentro 
+        directiveBoard, 
+        districtDirectiveBoard, 
+        disciplinaryCourt 
       } = this.plateInput;
 
       const bodies = {
-        juntaDirectiva,
-        tribunalDisciplinario, 
-        juntaDirectivaDeCentro
+        directiveBoard,
+        districtDirectiveBoard, 
+        disciplinaryCourt
       }
 
       this.bodyNames = Object.keys(bodies);
 
       console.log(this.bodyNames);
-      
+
+      this.locationUrl = window.location.pathname;
+
     }
   }
 
@@ -40,14 +55,13 @@ export class PlateDetailsComponent implements OnInit, AfterViewInit {
     return Object.keys(this.plateInput[bodyName]);
   }
 
-  ngAfterViewInit() {
-    
-  }
-
-  locationUrl: string = window.location.pathname;
-
   onCloseDetails() {
     this.close.emit();
+  }
+
+  onDeletePlate() {
+    const { _id } = this.plateInput;
+    this.delete.emit({_id})
   }
 
 }

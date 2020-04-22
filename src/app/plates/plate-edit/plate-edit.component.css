@@ -65,21 +65,10 @@
     justify-content: center;
 }
 
-.plate-edit__list {
-    margin: 15px;
-}
-
-.plate-edit__list-item {
-    margin: 10px;
-}
-
-.plate-edit__details__highlight {
-    display: flex;
-}
-
 .plate-edit__details__body {
     padding: 20px 30px;
 }
+
 .plate-edit__details__body:nth-child(even) {
     background: #1B252B;
     color: white;
@@ -92,8 +81,30 @@
     margin-right: 5px;
 }
 
+.plate-edit__details__highlight {
+    display: flex;
+}
+
+.plate-edit__list {
+    margin: 15px;
+}
+
+.plate-edit__list-item {
+    margin: 10px;
+}
+
 .btn--confirm {
     margin: 15px 20px;
     padding: 15px 15px;
     font-size: .9rem;
 }
+
+
+
+
+
+
+
+
+
+

@@ -1,11 +1,98 @@
-<h2 class="plate-edit__body__heading">Junta Directiva</h2>
+<div [formGroup]="form" class="plate-edit-body__container">
 
-<div 
-    class="plate-edit__seat" 
-    *ngIf="hasOwnProperty('presidente')"
->
+    <h2 class="plate-edit__body__heading">Directive Board</h2>
 
-    <h4 class="plate-edit__seat__heading">Presidente</h4>
+    <div 
+        class="plate-edit__seat" 
+        *ngIf="hasOwnProperty('president')"
+    >
+
+        <h4 class="plate-edit__seat__heading">President</h4>
+
+            <div class="plate-edit__check-input">
+
+                <div class="plate-edit__input-autocomplete">
+
+                    <input 
+                    type="text" 
+                    name="president"
+                    formControlName="president"
+                    class="plate-edit__input"
+                    (keyup)="searchUsers($event)"
+                    placeholder="Ingrese CIV..."
+                    />
+
+                    <ul 
+                        *ngIf="(listToShow === 'president')" 
+                        class="autocomplete"
+                    >
+
+                        <li 
+                            *ngIf="loading"
+                            class="autocomplete__item"   
+                        >
+                            
+                            <div class="loading">
+                                <i class="loading--1"></i>
+                                <i class="loading--2"></i>
+                            </div>
+                        
+                        </li>
+
+                        <li 
+                            *ngIf="!(listErrorHandling.hide)"
+                            class="autocomplete__item autocomplete__item--error-message"   
+                        >
+
+                            <p class="autocomplete__item__center">
+                                {{listErrorHandling.message}}
+                            </p>
+                        
+                        </li>
+
+                        <li 
+                            *ngFor="let user of users"
+                            (click)="handleChange('president' , user['CIV'])"
+                            class="autocomplete__item"
+                        >
+                            
+                            <p class="autocomplete__item__left">
+                                {{user.nombre}}
+                            </p>
+
+                            <p class="autocomplete__item__right">
+                                {{user.CIV}}
+                            </p>
+
+                            
+                        
+                        </li>
+
+                    </ul>
+
+                </div>
+        
+
+            <div 
+                class="signal"
+                [ngClass]="{
+                    'signal--success': signalToCheck.president === 'success',
+                    'signal--waiting': signalToCheck.president === 'waiting',
+                    'signal--warning': signalToCheck.president === 'warning'
+                }">
+                
+            </div>
+        </div>
+
+    </div>  
+
+
+    <div 
+        class="plate-edit__seat" 
+        *ngIf="hasOwnProperty('vicepresident')"
+    >
+
+        <h4 class="plate-edit__seat__heading">Vicepresident</h4>
 
         <div class="plate-edit__check-input">
 
@@ -13,15 +100,15 @@
 
                 <input 
                 type="text" 
-                name="presidente"
+                name="vicepresident"
+                formControlName="vicepresident"
                 class="plate-edit__input"
                 (keyup)="searchUsers($event)"
-                [value]="body.presidente"
                 placeholder="Ingrese CIV..."
                 />
 
                 <ul 
-                    *ngIf="(listToShow === 'presidente')" 
+                    *ngIf="((listToShow === 'vicepresident'))" 
                     class="autocomplete"
                 >
 
@@ -50,7 +137,7 @@
 
                     <li 
                         *ngFor="let user of users"
-                        (click)="handleChange('presidente' , user._id)"
+                        (click)="handleChange('vicepresident' , user['CIV'])"
                         class="autocomplete__item"   
                     >
                         
@@ -67,261 +154,179 @@
                 </ul>
 
             </div>
-     
 
-        <div 
-            class="signal"
-            [ngClass]="{
-                'signal--success': signalToCheck.presidente === 'success',
-                'signal--waiting': signalToCheck.presidente === 'waiting',
-                'signal--warning': signalToCheck.presidente === 'warning'
-            }">
-            
+            <div 
+                class="signal"
+                [ngClass]="{
+                    'signal--success': signalToCheck.vicepresident === 'success',
+                    'signal--waiting': signalToCheck.vicepresident === 'waiting',
+                    'signal--warning': signalToCheck.vicepresident === 'warning'
+                }">
+                </div>
         </div>
+
     </div>
 
-</div>  
 
+    <div 
+        class="plate-edit__seat"
+        *ngIf="hasOwnProperty('treasurer')"
+    >
 
-<div 
-    class="plate-edit__seat" 
-    *ngIf="hasOwnProperty('vicepresidente')"
->
+        <h4 class="plate-edit__seat__heading">Treasuser</h4>
 
-    <h4 class="plate-edit__seat__heading">Vicepresidente</h4>
+        <div class="plate-edit__check-input">
 
-    <div class="plate-edit__check-input">
+            <div class="plate-edit__input-autocomplete">
 
-        <div class="plate-edit__input-autocomplete">
+                <input 
+                type="text" 
+                name="treasurer"
+                formControlName="treasurer"
+                class="plate-edit__input"
+                (keyup)="searchUsers($event)"
+                placeholder="Ingrese CIV..."
+                />
 
-            <input 
-            type="text" 
-            name="vicepresidente"
-            class="plate-edit__input"
-            (keyup)="searchUsers($event)"
-            [value]="body.vicepresidente"
-            placeholder="Ingrese CIV..."
-            />
-
-            <ul 
-                *ngIf="((listToShow === 'vicepresidente'))" 
-                class="autocomplete"
-            >
-
-                <li 
-                    *ngIf="loading"
-                    class="autocomplete__item"   
+                <ul 
+                    *ngIf="((listToShow === 'treasurer'))" 
+                    class="autocomplete"
                 >
+
+                    <li 
+                        *ngIf="loading"
+                        class="autocomplete__item"   
+                    >
+                        
+                        <div class="loading">
+                            <i class="loading--1"></i>
+                            <i class="loading--2"></i>
+                        </div>
                     
-                    <div class="loading">
-                        <i class="loading--1"></i>
-                        <i class="loading--2"></i>
-                    </div>
-                
-                </li>
+                    </li>
 
-                <li 
-                    *ngIf="!(listErrorHandling.hide)"
-                    class="autocomplete__item autocomplete__item--error-message"   
-                >
+                    <li 
+                        *ngIf="!(listErrorHandling.hide)"
+                        class="autocomplete__item autocomplete__item--error-message"   
+                    >
 
-                    <p class="autocomplete__item__center">
-                        {{listErrorHandling.message}}
-                    </p>
-                
-                </li>
-
-                <li 
-                    *ngFor="let user of users"
-                    (click)="handleChange('vicepresidente' , user._id)"
-                    class="autocomplete__item"   
-                >
+                        <p class="autocomplete__item__center">
+                            {{listErrorHandling.message}}
+                        </p>
                     
-                    <p class="autocomplete__item__right">
-                        {{user.CIV}}
-                    </p>
+                    </li>
 
-                    <p class="autocomplete__item__left">
-                        {{user.nombre}}
-                    </p>
-                
-                </li>
+                    <li 
+                        *ngFor="let user of users"
+                        (click)="handleChange('treasurer' , user['CIV'])"
+                        class="autocomplete__item"   
+                    >
+                        
+                        <p class="autocomplete__item__right">
+                            {{user.CIV}}
+                        </p>
 
-            </ul>
+                        <p class="autocomplete__item__left">
+                            {{user.nombre}}
+                        </p>
+                    
+                    </li>
 
+                </ul>
+
+            </div>
+
+            <div 
+                class="signal"
+                [ngClass]="{
+                    'signal--success': signalToCheck.treasurer === 'success',
+                    'signal--waiting': signalToCheck.treasurer === 'waiting',
+                    'signal--warning': signalToCheck.treasurer === 'warning'
+                }">
+                </div>
         </div>
 
-        <div 
-            class="signal"
-            [ngClass]="{
-                'signal--success': signalToCheck.vicepresidente === 'success',
-                'signal--waiting': signalToCheck.vicepresidente === 'waiting',
-                'signal--warning': signalToCheck.vicepresidente === 'warning'
-            }">
+    </div>
+
+
+    <div 
+        class="plate-edit__seat"
+        *ngIf="hasOwnProperty('generalSecretary')"
+    >
+
+        <h4 class="plate-edit__seat__heading">General Secretary</h4>
+
+        <div class="plate-edit__check-input">
+
+            <div class="plate-edit__input-autocomplete">
+
+                <input 
+                type="text" 
+                name="generalSecretary"
+                formControlName="generalSecretary"
+                class="plate-edit__input"
+                (keyup)="searchUsers($event)"
+                placeholder="Ingrese CIV..."
+                />
+
+                <ul 
+                    *ngIf="((listToShow === 'generalSecretary'))" 
+                    class="autocomplete"
+                >
+
+                    <li 
+                        *ngIf="loading"
+                        class="autocomplete__item"   
+                    >
+                        
+                        <div class="loading">
+                            <i class="loading--1"></i>
+                            <i class="loading--2"></i>
+                        </div>
+                    
+                    </li>
+
+                    <li 
+                        *ngIf="!(listErrorHandling.hide)"
+                        class="autocomplete__item autocomplete__item--error-message"   
+                    >
+
+                        <p class="autocomplete__item__center">
+                            {{listErrorHandling.message}}
+                        </p>
+                    
+                    </li>
+
+                    <li 
+                        *ngFor="let user of users"
+                        (click)="handleChange('generalSecretary' , user['CIV'])"
+                        class="autocomplete__item"   
+                    >
+                        
+                        <p class="autocomplete__item__right">
+                            {{user.CIV}}
+                        </p>
+
+                        <p class="autocomplete__item__left">
+                            {{user.nombre}}
+                        </p>
+                    
+                    </li>
+
+                </ul>
+
             </div>
+
+            <div 
+                class="signal"
+                [ngClass]="{
+                    'signal--success': signalToCheck.generalSecretary === 'success',
+                    'signal--waiting': signalToCheck.generalSecretary === 'waiting',
+                    'signal--warning': signalToCheck.generalSecretary === 'warning'
+                }">
+                </div>
+        </div>
+
     </div>
 
 </div>
-
-
-<div 
-    class="plate-edit__seat"
-    *ngIf="hasOwnProperty('tesorero')"
->
-
-    <h4 class="plate-edit__seat__heading">Tesorero</h4>
-
-    <div class="plate-edit__check-input">
-
-        <div class="plate-edit__input-autocomplete">
-
-            <input 
-            type="text" 
-            name="tesorero"
-            class="plate-edit__input"
-            (keyup)="searchUsers($event)"
-            [value]="body.tesorero"
-            placeholder="Ingrese CIV..."
-            />
-
-            <ul 
-                *ngIf="((listToShow === 'tesorero'))" 
-                class="autocomplete"
-            >
-
-                <li 
-                    *ngIf="loading"
-                    class="autocomplete__item"   
-                >
-                    
-                    <div class="loading">
-                        <i class="loading--1"></i>
-                        <i class="loading--2"></i>
-                    </div>
-                
-                </li>
-
-                <li 
-                    *ngIf="!(listErrorHandling.hide)"
-                    class="autocomplete__item autocomplete__item--error-message"   
-                >
-
-                    <p class="autocomplete__item__center">
-                        {{listErrorHandling.message}}
-                    </p>
-                
-                </li>
-
-                <li 
-                    *ngFor="let user of users"
-                    (click)="handleChange('tesorero' , user._id)"
-                    class="autocomplete__item"   
-                >
-                    
-                    <p class="autocomplete__item__right">
-                        {{user.CIV}}
-                    </p>
-
-                    <p class="autocomplete__item__left">
-                        {{user.nombre}}
-                    </p>
-                
-                </li>
-
-            </ul>
-
-        </div>
-
-        <div 
-            class="signal"
-            [ngClass]="{
-                'signal--success': signalToCheck.tesorero === 'success',
-                'signal--waiting': signalToCheck.tesorero === 'waiting',
-                'signal--warning': signalToCheck.tesorero === 'warning'
-            }">
-            </div>
-    </div>
-
-</div>
-
-
-<div 
-    class="plate-edit__seat"
-    *ngIf="hasOwnProperty('secretarioGeneral')"
->
-
-    <h4 class="plate-edit__seat__heading">Secretario General</h4>
-
-    <div class="plate-edit__check-input">
-
-        <div class="plate-edit__input-autocomplete">
-
-            <input 
-            type="text" 
-            name="secretarioGeneral"
-            class="plate-edit__input"
-            (keyup)="searchUsers($event)"
-            [value]="body.secretarioGeneral"
-            placeholder="Ingrese CIV..."
-            />
-
-            <ul 
-                *ngIf="((listToShow === 'secretarioGeneral'))" 
-                class="autocomplete"
-            >
-
-                <li 
-                    *ngIf="loading"
-                    class="autocomplete__item"   
-                >
-                    
-                    <div class="loading">
-                        <i class="loading--1"></i>
-                        <i class="loading--2"></i>
-                    </div>
-                
-                </li>
-
-                <li 
-                    *ngIf="!(listErrorHandling.hide)"
-                    class="autocomplete__item autocomplete__item--error-message"   
-                >
-
-                    <p class="autocomplete__item__center">
-                        {{listErrorHandling.message}}
-                    </p>
-                
-                </li>
-
-                <li 
-                    *ngFor="let user of users"
-                    (click)="handleChange('secretarioGeneral' , user._id)"
-                    class="autocomplete__item"   
-                >
-                    
-                    <p class="autocomplete__item__right">
-                        {{user.CIV}}
-                    </p>
-
-                    <p class="autocomplete__item__left">
-                        {{user.nombre}}
-                    </p>
-                
-                </li>
-
-            </ul>
-
-        </div>
-
-        <div 
-            class="signal"
-            [ngClass]="{
-                'signal--success': signalToCheck.secretarioGeneral === 'success',
-                'signal--waiting': signalToCheck.secretarioGeneral === 'waiting',
-                'signal--warning': signalToCheck.secretarioGeneral === 'warning'
-            }">
-            </div>
-    </div>
-
-</div>
-

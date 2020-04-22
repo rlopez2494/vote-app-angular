@@ -1,14 +1,40 @@
-<div class="voto">
+<div class="vote">
 
-    <div>
-        <h1>ORGANOS NACIONALES</h1>
-    </div>
+    <form 
+    [formGroup]="voteSubmission"
+    (ngSubmit)="onVoteSubmit()">
+        <div>
+            <h1>ORGANOS NACIONALES</h1>
+        </div>
+        
+        <app-organo 
+
+            *ngFor="let body of bodies"
+            [body]="body"
+            [formGroupName]="setBodyName(body.name)"
+            [bodyName]="setBodyName(body.name)">
+            
+        </app-organo>
+
+        <div class="vote__buttons">
+
+            <button
+                class="btn btn--primary"
+                type="submit"
+                [disabled]="(!voteSubmission.dirty)"
+                >VOTE
+            </button>
+        
     
-    <app-organo 
-        *ngFor="let organo of organos"
-        [organo]="organo">
-
-    </app-organo>
+            <button 
+                type="button"
+                class="btn btn--secondary"
+                (click)="clearVote()"
+                >CLEAR
+            </button>
+    
+        </div>
+    </form>
     
 </div>
 

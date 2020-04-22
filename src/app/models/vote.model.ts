@@ -1,19 +1,19 @@
-import { JuntaDirectiva, TribunalDisciplinario } from "./plate.model";
+import { DirectiveBoard, DisciplinaryCourt } from "./plate.model";
 
 export class Vote {
     constructor(
-        public juntaDirectiva: JuntaDirectiva,
-        public juntaDirectivaDeCentro: JuntaDirectiva,
-        public tribunalDisciplinario: TribunalDisciplinario,
-        public fechaRegistro: Date,
-        public usuario: Object
+        public directiveBoard: DirectiveBoard,
+        public districtDirectiveBoard: DirectiveBoard,
+        public disciplinaryCourt: DisciplinaryCourt,
+        public registerDate: Date,
+        public user?: Object
     ) {
 
-        this.juntaDirectiva = juntaDirectiva;
-        this.juntaDirectivaDeCentro = juntaDirectivaDeCentro;
-        this.tribunalDisciplinario = tribunalDisciplinario;
-        this.fechaRegistro = fechaRegistro;
-        this.usuario = usuario; 
+        this.directiveBoard = directiveBoard;
+        this.districtDirectiveBoard = districtDirectiveBoard;
+        this.disciplinaryCourt = disciplinaryCourt;
+        this.registerDate = registerDate;
+        this.user = user; 
         
     }
 }

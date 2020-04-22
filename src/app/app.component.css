@@ -47,28 +47,38 @@ body {
 }
 
 .btn {
-    border-radius: 2px;
+    width: 120px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 13px;
     font-weight: bold;
     padding: 10px;
-    letter-spacing: 1px;
-    color: #333;
-    border: none;
-    box-shadow: 1px 1px 3px;
-    background: #fff;
-    margin: 5px;
-    transition: color .2s ease;
+    cursor: pointer;
+    transition: background .2s;
 }
 
 .btn--primary {
-    background: rgb(168, 210, 226);
+    background: rgb(19, 128, 155);
     color: #333;
 }
 
 .btn--primary:hover {
-    background: rgb(18, 99, 131);
-    color: #fff;
-    border: none;
-    box-shadow: 1px 1px 3px;
+    background: rgb(22, 150, 182);
+}
+
+.btn--primary:disabled {
+    cursor: auto;
+    background: rgb(143, 143, 143);
+    color: #e4e4e4;
+}
+
+.btn--secondary {
+    background: rgb(17, 153, 96);
+}
+
+.btn--secondary:hover {
+    background: rgb(20, 184, 116);
 }
 
 .btn--warning {

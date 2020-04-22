@@ -21,6 +21,7 @@ import { PlateDetailsComponent } from './plates/plate-details/plate-details.comp
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
+import { CanDeactivateGuard } from './can-deactivate-guard';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { AuthService } from './auth.service';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,14 +8,19 @@ import { PlatesComponent } from './plates/plates.component';
 import { PlateEditComponent } from './plates/plate-edit/plate-edit.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'; 
 import { AuthGuard } from './auth-guard.service';
+import { CanDeactivateGuard } from './can-deactivate-guard';
 
 const routes: Routes = [
   { path:'', component: HomeComponent },
   { path:'admin', component: HomeComponent },
-  { path:'registro-usuario', component: RegisterUserComponent },
-  { path: 'voto', canActivate:[AuthGuard] ,component: VoteComponent },
+  { path:'signup', component: RegisterUserComponent },
+  { path: 'vote', canActivate:[AuthGuard] ,component: VoteComponent },
   { path: 'plates', component: PlatesComponent },
-  { path: 'plates/plateEdit', canActivate: [AuthGuard] ,component: PlateEditComponent },
+  { path: 'plates/plateEdit', 
+    canActivate: [AuthGuard],
+    canDeactivate: [CanDeactivateGuard],
+    component: PlateEditComponent
+  },
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' }
 ];

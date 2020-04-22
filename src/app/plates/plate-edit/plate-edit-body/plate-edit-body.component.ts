@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { JuntaDirectiva, TribunalDisciplinario } from '../../../models/plate.model';
-import { PlateService } from '../plate.service';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { DirectiveBoard, DisciplinaryCourt } from '../../../models/plate.model';
 import { HttpClient } from '@angular/common/http';
-import { ListErrorHandling, ListHandling } from '../interfaces/interfaces'
+import { ListErrorHandling } from '../interfaces/interfaces';
+import { ControlContainer, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-plate-edit-body',
@@ -12,28 +13,27 @@ import { ListErrorHandling, ListHandling } from '../interfaces/interfaces'
 export class PlateEditBodyComponent implements OnInit, AfterViewInit {
 
   constructor(
-    private plateService: PlateService,
-    private http: HttpClient
+    private http: HttpClient,
+    private controlContainer: ControlContainer
   ) {}
 
-  @Input() plateBody: JuntaDirectiva | TribunalDisciplinario;
+  @Input() plateBody: DirectiveBoard | DisciplinaryCourt;
   @Input() bodyName: string;
 
+  form: FormGroup;
   users: any[] = [];
-  body: JuntaDirectiva | TribunalDisciplinario;
+  subscription: Subscription;
 
   listToShow: string;
 
   signalToCheck: Object = {
-    presidente: null,
-    vicepresidente: null,
-    tesorero: null,
-    secretarioGeneral: null
+    president: null,
+    vicepresident: null,
+    treasurer: null,
+    generalSecretary: null
   };
 
   loading: boolean = false;  
-
-  
 
   // Error handling (autocomplete list)
   listErrorHandling: ListErrorHandling = {
@@ -48,7 +48,7 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() { 
-    this.body = { ...this.plateBody } 
+    this.form = (<FormGroup>this.controlContainer.control);
   }
 
   ngAfterViewInit() {
@@ -71,11 +71,9 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
 
   }
 
-  handleChange(seatName: string, id: string) {
+  handleChange(seatName: string, CIV: Number) {
     this.listToShow = null;
-    const user = this.users.find(user => (user._id === id))
-    this.plateService.onEditPlate(this.bodyName, seatName, id, user);
-    this.body[seatName] = `${user.nombre} (${user.CIV})`
+    this.form.patchValue({ [seatName]: CIV });
     this.signalToCheck[seatName] = 'success';
   }
 
@@ -83,29 +81,35 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
 
     this.listErrorHandling.hide = true;
 
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
     const element = event.target as HTMLElement;
     const { name } = (<HTMLInputElement>element);
 
-    this.signalToCheck[name] = 'waiting'
+    this.signalToCheck[name] = 'waiting';
 
         this.users = [];
+
         if(event.target.value.length > 0) {
           if (!(this.users.length > 0)) this.loading = true;
           const value = Number(event.target.value);
           if (!(value === NaN)) {
             const urlString = `http://localhost:9000/users/list/${value}`;
-            const subscription = this.http.get(urlString);
-
-            subscription.subscribe((responseData: any) => {
+            this.subscription = this.http.get(urlString)
+              .subscribe((responseData: any) => {
               if(responseData.length > 0) {
                 
                 this.users = responseData.filter((user: any) => {
                   let validUser = true;
 
-                  // Filtrar los usuarios que ya han sido seleccionados
-                  Object.keys(this.plateService.plate).forEach(body => {
-                    Object.keys(this.plateService.plate[body]).forEach(seat => {
-                      if (user._id === this.plateService.plate[body][seat]) {
+                  // Get the formGroup object
+                  const formValue = this.form['_parent'].value;
+
+                  // Filter already selected users
+                  Object.keys(formValue).forEach(body => {
+                    Object.keys(formValue[body]).forEach(seat => {
+                      if (user['CIV'] === formValue[body][seat]) {
                         validUser = false;
                       }
                     });
@@ -117,12 +121,15 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
                 this.loading = false;
                 this.listToShow = name;
                 
-                
               }
             }, (err) => {
-              console.log(err);
-              console.log(err.status);
               this.listToShow = name;
+
+              if(err.status === 404) {
+                this.loading = false;
+                this.listErrorHandling.hide = false;
+                this.listErrorHandling.message = "No se encuentra registrado";
+              }
 
               switch(err.status) {
                 case 404:

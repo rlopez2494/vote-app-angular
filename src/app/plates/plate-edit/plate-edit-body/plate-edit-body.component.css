@@ -4,8 +4,14 @@
     width: 85%;
     padding: 3px 0;
     background: #1C1A1A;
-    margin-bottom: 10px;
+    margin: 0 auto 10px auto;
     border-radius: 10px;
+}
+
+.plate-edit-body__container {
+    width: 100%;
+    margin: auto;
+    text-align: center;
 }
 
 .plate-edit__input-autocomplete {
@@ -66,6 +72,8 @@
     color: #fff;
     cursor: pointer;
     transition: background .15s ease;
+    display: flex;
+    justify-content: space-between;
 }
 
 .autocomplete__item--error-message {
@@ -83,11 +91,6 @@
     display: inline;
     font-size: 1.05rem;
     letter-spacing: 1px;
-}
-
-.autocomplete__item__right {
-    position: absolute;
-    right: 15px;
 }
 
 .plate-edit__seat__heading {

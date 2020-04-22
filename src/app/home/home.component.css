@@ -74,30 +74,6 @@
     transition: background .2s;
 }
 
-.login__btn--primary {
-    background: rgb(19, 128, 155);
-}
-
-.login__btn--primary:hover {
-    background: rgb(22, 150, 182);
-}
-
-.login__btn--primary:disabled {
-    cursor: auto;
-    background: rgb(143, 143, 143);
-    color: #e4e4e4;
-}
-
-.login__btn--secondary {
-    background: rgb(17, 153, 96);
-}
-
-.login__btn--secondary:hover {
-    background: rgb(20, 184, 116);
-}
-
-
-
 .login__buttons{
     display: flex;
     justify-content: space-around; 
