@@ -40,7 +40,7 @@ export class PlateService {
     valueNameSubscription: Subscription;
 
     getUser(value: number) {
-        return this.http.get(`http://localhost:9000/users/${value}`);
+        return this.http.get(`http://localhost:9000/civ-users/${value}`);
     }
 
     getCandidate(id: string) { 

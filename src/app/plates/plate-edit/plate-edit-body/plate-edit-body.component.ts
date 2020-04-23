@@ -95,7 +95,7 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
           if (!(this.users.length > 0)) this.loading = true;
           const value = Number(event.target.value);
           if (!(value === NaN)) {
-            const urlString = `http://localhost:9000/users/list/${value}`;
+            const urlString = `http://localhost:9000/civ-users/list/${value}`;
             this.subscription = this.http.get(urlString)
               .subscribe((responseData: any) => {
               if(responseData.length > 0) {

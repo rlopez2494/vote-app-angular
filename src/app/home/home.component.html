@@ -2,9 +2,14 @@
 
   <div class="login">
     
-    <p class="login__heading">LOG IN</p>
+    <p *ngIf="!showRegister" class="login__heading">LOG IN</p>
+    <p *ngIf="showRegister" class="login__heading">SIGN UP</p>
   
-    <form class="login__form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <form 
+        *ngIf="!showRegister"
+        class="login__form" 
+        [formGroup]="loginSubmission"
+        (ngSubmit)="onLoginSubmit()">
 
         <div class="login__box">
 
@@ -14,14 +19,11 @@
                 id="email" 
                 class="login__input"
                 name="email"
-                type="email"  
+                type="email"
+                formControlName="email"  
                 placeholder="user@account.com"
-                ngModel
-                required
-                email
-                #email="ngModel"
                 />
-                <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p>
+                <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
             </div>
 
             <div class="login__input-group">
@@ -31,8 +33,7 @@
                 class="login__input"
                 name="password"
                 type="password"
-                ngModel
-                required
+                formControlName="password"
                 />
             </div>
 
@@ -57,15 +58,123 @@
                 <button
                     class="btn btn--primary"
                     type="submit"
-                    [disabled]="(!f.touched || !f.valid)"
+                    [disabled]="(!loginSubmission.touched || !loginSubmission.valid)"
                     >LOG IN
                 </button>
             
         
                 <button 
-                    [routerLink]="['/signup']"
+                    (click)="onShowRegister()"
                     class="btn btn--secondary"
                     >SIGN UP
+                </button>
+        
+            </div>
+
+        </div> 
+  
+    </form>
+
+    <form 
+        *ngIf="showRegister"
+        class="login__form" 
+        [formGroup]="registerSubmission"
+        (ngSubmit)="onRegisterSubmit()">
+
+        <div class="login__box">
+
+            <div class="login__input-group">
+                <label class="login__input-label" for="name">Name</label>
+                <input
+                id="name" 
+                class="login__input"
+                type="text"
+                formControlName="name"  
+                placeholder="Insert name"
+                />
+                <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+            </div>
+
+            <div class="login__input-group">
+                <label class="login__input-label" for="last-name">Last name</label>
+                <input
+                id="last-name" 
+                class="login__input"
+                type="text"
+                formControlName="lastName"  
+                placeholder="Insert last name"
+                />
+                <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+            </div>
+
+            <div class="login__input-group">
+                <label class="login__input-label" for="email">Email</label>
+                <input
+                id="email" 
+                class="login__input"
+                type="email"
+                formControlName="email"  
+                placeholder="user@account.com"
+                />
+                <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+            </div>
+
+            <div class="login__input-group">
+                <label class="login__input-label" for="password">Password</label>
+                <input 
+                id="password"
+                class="login__input"
+                name="password"
+                type="password"
+                formControlName="password"
+                />
+            </div>
+
+            <div class="login__input-group">
+                <label class="login__input-label" for="repeat-password">Repeat password</label>
+                <input 
+                id="repeat-password"
+                class="login__input"
+                name="password"
+                type="password"
+                formControlName="repeatPassword"
+                />
+            </div>
+
+            <!-- <div class="login__error-box">
+                <img 
+                    class="login__img login__img--warning"
+                    alt="warning" 
+                    width="20" 
+                    height="20"
+                />
+                
+                <p class="paragraph paragraph--error">Error message</p>                            
+                
+            </div> -->
+
+            <div class="login__link-container">
+                <a 
+                class="login__link" 
+                href="#"
+                *ngIf="!showRegister">Forgot your password?
+                </a>
+            </div>
+
+            <div class="login__buttons">
+        
+                <button 
+                    class="btn btn--secondary"
+                    type="submit"
+                    [disabled]="(!registerSubmission.touched || !registerSubmission.valid)"
+                    >SIGN UP
+                </button>
+
+                <button
+                    (click)="onCancelSignUp()"
+                    class="btn btn--warning"
+                    type="button"
+                    >CANCEL
                 </button>
         
             </div>

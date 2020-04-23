@@ -67,12 +67,6 @@ body {
     background: rgb(22, 150, 182);
 }
 
-.btn--primary:disabled {
-    cursor: auto;
-    background: rgb(143, 143, 143);
-    color: #e4e4e4;
-}
-
 .btn--secondary {
     background: rgb(17, 153, 96);
 }
@@ -82,15 +76,19 @@ body {
 }
 
 .btn--warning {
-    background: rgb(192, 159, 159);
-    color: #333;
+    background: rgb(182, 59, 59);
+    color: #fff;
 }
 
 .btn--warning:hover {
-    background: rgb(131, 66, 66);
+    background: rgb(133, 55, 55);
     color: #fff;
-    border: none;
-    box-shadow: 1px 1px 3px;
+}
+
+.btn:disabled {
+    cursor: auto;
+    background: rgb(143, 143, 143);
+    color: #e4e4e4;
 }
 
 .loading {
