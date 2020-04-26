@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
+import { Observable, Subject } from 'rxjs';
+import { AuthResponseData } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +14,24 @@ import { UserService } from '../user.service';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private http: HttpClient,
-    private userService: UserService) { }
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   email: String;
   password: String;
   registerSubmission: FormGroup;
   loginSubmission: FormGroup;
   showRegister: boolean = false;
+  isLoading: boolean = false;
+  error: string = null;
+
+  authObs: Observable<AuthResponseData>;
+  authSubject: Subject< Observable<AuthResponseData> >;
+
 
   ngOnInit() {
+    this.authSubject = new Subject< Observable<AuthResponseData> >();
     
     this.registerSubmission = new FormGroup({
       'name': new FormControl(
@@ -64,6 +74,20 @@ export class HomeComponent implements OnInit {
         [Validators.required]),
     })
 
+    this.authSubject.subscribe(authObs => {
+  
+      authObs.subscribe((responseData: any) => {
+
+        this.isLoading = false;
+        this.router.navigate(['/vote']);
+      }, (errorMessage) => {
+
+        this.error = errorMessage
+        this.isLoading = false;
+      })
+
+    })
+
   }
 
   passwordIsDifferent(control: FormControl): { [s: string]: boolean } {
@@ -80,36 +104,40 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  onShowRegister() {
+  onShowSignup() {
+    this.error = null;
     this.showRegister = true;
   }
 
   onCancelSignUp() {
+    this.error = null;
     this.showRegister = false;
   }
 
-  onLoginSubmit(formElement: HTMLFormElement) {
-    const { email, password } = formElement.value;
-    console.log(formElement)
+  onLogin() {
+    this.error = null;
 
-    this.userService.loginUser(email, password)
-    .subscribe((response) => {
-      console.log(response);
-    }, (error) => {
-      console.log(error);
-    });
+    const { email, password } = this.loginSubmission.value;
+    this.isLoading = true;
+    this.authSubject.next( this.authService.login(email, password) );
+  
   }
 
-  onRegisterSubmit() {
+  onSignup() {
+    this.error = null;
+
+    if(!this.registerSubmission.valid) {
+      return;
+    }
+
     const registerBody = { ...this.registerSubmission.value };
     delete registerBody['repeatPassword'];
-    this.userService.registerUser(registerBody)
-      .subscribe((responseData: any) => {
-        console.log(responseData)
-      }, (error) => {
-        console.log(error.error)
-      })
+
+    this.isLoading = true;
     
+    this.authSubject.next( this.authService.signup(registerBody) );
+   
+    this.registerSubmission.reset();
   }
 
 }

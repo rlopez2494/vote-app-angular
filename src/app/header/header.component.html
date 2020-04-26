@@ -16,7 +16,12 @@
 
         </div>
 
-        <a class="header__nav" [routerLink]="urlString">{{urlName}}</a> 
+        <button 
+            *ngIf="showLogout"
+            class="btn btn--primary btn--logout"
+            (click)="onLogout()">
+            LOG OUT
+        </button>
     
     </div>
 </div>

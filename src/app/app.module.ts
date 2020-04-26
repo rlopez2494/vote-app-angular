@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; 
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 import { CanDeactivateGuard } from './can-deactivate-guard';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptorService } from './auth-interceptor.service';
+import { PlateService } from './plates/plate.service';
+import { VoteService } from './vote/vote.service';
 
 
 @NgModule({
@@ -39,7 +43,8 @@ import { CanDeactivateGuard } from './can-deactivate-guard';
     HeaderComponent,
     PlateEditBodyComponent,
     PlateDetailsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,19 @@ import { CanDeactivateGuard } from './can-deactivate-guard';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [AuthGuard, AuthService, CanDeactivateGuard],
+  providers: [
+    AuthGuard, 
+    AuthService, 
+    CanDeactivateGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    PlateService,
+    VoteService
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

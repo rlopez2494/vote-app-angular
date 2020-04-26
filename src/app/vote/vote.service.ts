@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Vote } from '../models/vote.model';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 
 export class VoteService {
     constructor(private http: HttpClient) { }
@@ -11,12 +11,10 @@ export class VoteService {
         
         const body = { ...voteSubmission }
 
-        // console.log(body);
         const urlString = `http://localhost:9000/votes`
         console.log(body);
         return this.http.post(urlString, body);
 
     }
-
 
 }

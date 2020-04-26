@@ -59,8 +59,9 @@ export class VoteComponent implements OnInit {
           // Making of the vote plates
           this.bodies = this.getBodies(this.data);
           
-      }, (err) => {
-        console.log(err);
+      }, (error) => {
+        alert(error)
+        this.router.navigate(['']);
       })
 
   }

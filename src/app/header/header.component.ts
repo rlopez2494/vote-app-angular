@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,29 +9,34 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, route: ActivatedRoute) { }
+  constructor(
+    private router: Router, 
+    private authService: AuthService
+  ) { }
 
-  urlString: String;
-  urlName: String;
+  showLogout: boolean;
   
   ngOnInit() {
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         const path = val.url;
     
-        if (path === '/') {
-          this.urlString = '/admin';
-          this.urlName = 'ADMIN' 
-        } else if (path === '/admin') {
-          this.urlString = '/'
-          this.urlName = 'USER'
-        } else {
-          this.urlString = '/',
-          this.urlName = 'LOG OUT'
-        }
+        if (path === '/') this.showLogout = false;
+        else this.showLogout = true;
+        
       }
     })
 
+  }
+
+  onLogout() {
+    this.authService.logout()
+      .subscribe(() => {}, 
+        (error) => {
+          alert(error)
+          this.router.navigate([''])
+          localStorage.removeItem('userData');
+        })
   }
 
 }

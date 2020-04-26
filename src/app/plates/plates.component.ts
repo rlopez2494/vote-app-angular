@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { PlateService } from './plate.service';
 
 @Component({
@@ -12,9 +12,8 @@ import { PlateService } from './plate.service';
 export class PlatesComponent implements OnInit {
 
   constructor(
-    private http: HttpClient, 
-    private route: ActivatedRoute,
-    private plateService: PlateService) { }
+    private plateService: PlateService,
+    private router: Router) { }
 
   plates: Object[];
   plateDetails: Object;
@@ -27,8 +26,9 @@ export class PlatesComponent implements OnInit {
       .subscribe((responseData: Object[]) => {
           this.showPlates = true;
           this.plates = responseData;
-      }, (err) => {
-        console.log(err);
+      }, (error) => {
+        alert(error)
+        this.router.navigate(['']);
       });
 
   }

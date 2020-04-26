@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, Subscription, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Plate } from '../models/plate.model';
-import { Router, ActivatedRoute } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 
 export class PlateService {
 
-    constructor(
-        private http: HttpClient,
-        private router: Router,
-        private route: ActivatedRoute) {}
+    constructor(private http: HttpClient) {}
 
     userValidation: Observable<{[s: string]: boolean} | null>;
 
@@ -138,7 +135,28 @@ export class PlateService {
     }
 
     getPlates(): Observable<any>{
-        return this.http.get(`http://localhost:9000/plates`);
+        return this.http.get(`http://localhost:9000/plates`)
+            .pipe(catchError(this.handleError));
+    }
+
+    // Central function to manage the request errors
+    private handleError(errorRes: HttpErrorResponse) {
+        
+        let errorMessage = 'An unknown error occurred!';
+        
+        if(!errorRes.error || !errorRes.error.message) {
+            return throwError(errorMessage);
+        }
+
+        switch (errorRes.error.message) {
+
+            case 'NOT_AUTHORIZED':
+                localStorage.removeItem('userData');
+                errorMessage = 'You are not authorized to be here';
+                break;
+        }
+
+        return throwError(errorMessage);
     }
 
 }

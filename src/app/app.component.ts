@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, OnDestroy, OnInit } from '@angular/core';
 import { Renderer2 } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +15,15 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private renderer: Renderer2,
     private router: Router,
-    private route: ActivatedRoute) {
+    private authService: AuthService) {
 
   }
 
   private subscription: Subscription;
 
   ngOnInit() {
+    this.authService.autoLogin();
+
     this.subscription = this.router.events
       .subscribe((val) => {
 

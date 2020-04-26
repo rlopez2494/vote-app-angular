@@ -14,10 +14,10 @@ const routes: Routes = [
   { path:'', component: HomeComponent },
   { path:'admin', component: HomeComponent },
   { path:'signup', component: RegisterUserComponent },
-  { path: 'vote', canActivate:[AuthGuard] ,component: VoteComponent },
-  { path: 'plates', component: PlatesComponent },
+  { path: 'vote', canActivate:[AuthGuard], component: VoteComponent },
+  { path: 'plates', canActivate:[AuthGuard], component: PlatesComponent },
   { path: 'plates/plateEdit', 
-    canActivate: [AuthGuard],
+    canActivate:[AuthGuard],
     canDeactivate: [CanDeactivateGuard],
     component: PlateEditComponent
   },

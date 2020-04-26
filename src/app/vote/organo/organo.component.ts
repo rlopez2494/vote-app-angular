@@ -81,7 +81,9 @@ export class OrganoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     //Unsubscription from Form group value changes
-    this.formSubscription.unsubscribe(); 
+    if(this.formSubscription) {
+      this.formSubscription.unsubscribe(); 
+    }
   }
 
   onSelectPlate(index: number) {
