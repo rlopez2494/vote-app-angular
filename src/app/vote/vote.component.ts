@@ -19,7 +19,7 @@ export class VoteComponent implements OnInit {
     private route: ActivatedRoute
     ) { }
  
-  data: Object[];
+  data: Object[] = [];
   bodies: Object[];
   voteSubmission: FormGroup;
   voteDate: Date = new Date();

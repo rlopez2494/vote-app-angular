@@ -16,12 +16,30 @@
 
         </div>
 
-        <button 
-            *ngIf="showLogout"
-            class="btn btn--primary btn--logout"
-            (click)="onLogout()">
-            LOG OUT
-        </button>
+        <div class="header__btn-container">
+
+            <button 
+                *ngIf="showAddPlates"
+                class="btn btn--secondary btn--logout"
+                [routerLink]="['/plates']">
+                Plates
+            </button>
+
+            <button 
+                *ngIf="showVote"
+                class="btn btn--warning btn--logout"
+                [routerLink]="['/vote']">
+                Vote
+            </button>
+
+            <button 
+                *ngIf="showLogout"
+                class="btn btn--primary btn--logout"
+                (click)="onLogout()">
+                Log out
+            </button>
+            
+        </div>
     
     </div>
 </div>

@@ -36,12 +36,6 @@
     padding-left: 10px;
 }
 
-.organo__HEAD ul li:last-child {
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-
 .organo__HEAD ul p {
     padding: 0;
     margin: 0;
@@ -53,13 +47,11 @@
     align-items: flex-end;
     margin: 20px 40px;
 }
-.organo__choices ul li:last-child {
-    height: 75px;
-}
 
 .organo__plancha {
    flex-grow: 2;
 }
+
 .organo__plancha button {
     height: 25px;
     width: 35px;
@@ -78,7 +70,7 @@
     justify-content: center;
 }
 
-.organo__plancha ul li:nth-child(n+3):nth-last-child(n+2) {
+.organo__plancha ul li:nth-child(n+3) {
     background: var(--blue-9);
 }
 
@@ -86,3 +78,20 @@
     justify-content: space-between;
     padding: 0 15px;
 }
+
+
+/* Styles for future party list implementations */
+
+/* .organo__choices ul li:last-child {
+    height: 75px;
+} */
+
+/* .organo__plancha ul li:nth-child(n+3):nth-last-child(n+2) {
+    background: var(--blue-9);
+} */
+
+/* .organo__HEAD ul li:last-child {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+} */

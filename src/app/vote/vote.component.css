@@ -4,9 +4,19 @@
     align-items: center;
 }
 
+.vote__heading {
+    text-align: center;
+    padding: 15px 0;
+}
+
 .vote__buttons {
     text-align: center;
     display: flex;
     justify-content: space-between;
     padding: 0 100px 25px 100px;
+}
+
+.vote__modal-paragraph {
+    margin-bottom: 20px;
+    font-weight: bold;
 }

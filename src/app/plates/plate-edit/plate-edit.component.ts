@@ -43,6 +43,7 @@ export class PlateEditComponent implements OnInit, CanDeactivateGuard{
 
   ngOnInit() {
 
+
     this.plateSubmission = new FormGroup({
       'directiveBoard': new FormGroup({
         'president': new FormControl(
@@ -106,6 +107,8 @@ export class PlateEditComponent implements OnInit, CanDeactivateGuard{
 
       })
     });
+
+    
   }
 
   isValidUser(control: FormControl) : Promise<{[s: string]: boolean} | null> {
@@ -142,7 +145,8 @@ export class PlateEditComponent implements OnInit, CanDeactivateGuard{
         }
 
         this.http.post(urlString, body)
-            .subscribe(() => {
+            .subscribe((responseData) => {
+                console.log(responseData)
                 alert('THE PLATE HAS BEEN SAVED SUCCESFULLY');
                 this.plateSubmission.reset();
                 this.router.navigate(['..'], {relativeTo: this.route});

@@ -4,12 +4,17 @@ import { Observable, Subscription, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Plate } from '../models/plate.model';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 
 @Injectable()
 
 export class PlateService {
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private router: Router
+        ) {}
 
     userValidation: Observable<{[s: string]: boolean} | null>;
 
@@ -18,7 +23,7 @@ export class PlateService {
             president: '',
             vicepresident: '',
             treasurer: '',
-            generalSecretary: '',
+            generalSecretary: ''
         },
         districtDirectiveBoard: {
             president: '',
@@ -49,38 +54,43 @@ export class PlateService {
         if (control['_parent'] && (control.value) ) {
 
             const valueNames: any = await this.getValueNames(control);
-            console.log(valueNames)
 
             this.userValidation = new Observable((observer) => {
                 const { value } = control;
                 this.getUser(value)
                     .subscribe((userData: any) => {
+                        console.log(userData)
 
-                        const { _id } = userData;
-                        this.getCandidate(_id)
-                            .subscribe((candidateData: any) => {
-                                console.log(candidateData);
-                                observer.next({'registeredAsCandidate': true});
-                                observer.complete();
-                            }, (error) => {
-                                if (error.status === 404) {
-                                    const { body, seat } = valueNames;
-                                    this.submissionModal[body][seat] = { ...userData } 
-                                    console.log(this.submissionModal);
-                                    console.log(error.status)
-                                    observer.next(null);
-                                    observer.complete();
-                                }
-                            })
+                        if (userData.candidate.length > 0) {
+                            observer.next({'registeredAsCandidate': true});
+                            observer.complete();
+                        } else {
+                            const { body, seat } = valueNames;
+                            this.submissionModal[body][seat] = { ...userData } 
+                            console.log(this.submissionModal);
+                            observer.next(null);
+                            observer.complete();
+                        }
 
                     }, (error) => {
                         const { status } = error;
-                        if(status === 404) {
-                            observer.next({'userNotRegistered': true});
-                            observer.complete();
-                        } else if(status === 400) {
-                            observer.next({'badInputError': true});
-                            observer.complete();
+                        switch (status) {
+                            case 404:
+                                observer.next({'userNotRegistered': true});
+                                observer.complete();
+                                break;
+                            
+                            case 400:
+                                observer.next({'badInputError': true});
+                                observer.complete();
+                                break;
+                            
+                            case 401:
+                                alert('Your session has finished, please login again');
+                                localStorage.removeItem('userData');
+                                this.router.navigate(['']);
+                            default:
+                                break;
                         }
                            
                     })
@@ -93,9 +103,11 @@ export class PlateService {
     }
 
     async getValueNames(control: FormControl) {
+
         if(this.valueNameSubscription !== undefined) {
             this.valueNameSubscription.unsubscribe()
         }
+
         let bodyAndSeatNames = {};
         this.valueNameSubscription = await control['_parent']['_parent'].valueChanges.subscribe(data => {
             if(this.oldPlate === undefined) {

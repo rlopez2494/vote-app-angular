@@ -1,14 +1,26 @@
 <div class="vote">
 
-    <form 
-    [formGroup]="voteSubmission"
-    (ngSubmit)="onVoteSubmit()">
-        <div>
-            <h1>ORGANOS NACIONALES</h1>
+    <div class="over" *ngIf="!(data.length > 1)">
+        <div class="alert-modal">
+            <p class="vote__modal-paragraph">There are no plates already registered, please register at least two of them</p>
+            <div class="btn-container btn-container--left">
+                <button class="btn btn--secondary" [routerLink]="['/plates']">
+                    Go to plates
+                </button>
+            </div>
         </div>
+    </div>
+
+    <form 
+        [formGroup]="voteSubmission"
+        (ngSubmit)="onVoteSubmit()"
+        *ngIf="(data.length > 1)">
+
+        
+        <h1 class="vote__heading">DISTRICT BODIES</h1>
+        
         
         <app-organo 
-
             *ngFor="let body of bodies"
             [body]="body"
             [formGroupName]="setBodyName(body.name)"

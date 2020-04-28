@@ -15,14 +15,31 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   showLogout: boolean;
+  showAddPlates: boolean = false;
+  showVote: boolean = false;
   
   ngOnInit() {
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         const path = val.url;
-    
-        if (path === '/') this.showLogout = false;
-        else this.showLogout = true;
+       
+        if (path === '/') {
+          this.showLogout = false;
+          this.showAddPlates = false;
+          this.showVote = false;
+        }
+
+        if(path !== '/') this.showLogout = true;
+
+        if (path !== '/' && path !== '/plates' && path !== '/plates/plateEdit') {
+          this.showAddPlates = true;
+          this.showVote = false;
+        }
+
+        if (path !== '/' && (path === '/plates' || path === '/plates/plateEdit')) {
+          this.showVote = true;
+          this.showAddPlates = false;
+        }
         
       }
     })

@@ -49,6 +49,9 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
 
   ngOnInit() { 
     this.form = (<FormGroup>this.controlContainer.control);
+    this.form.valueChanges.subscribe(() => {
+      console.log(this.form.get('president').status)
+    })
   }
 
   ngAfterViewInit() {
