@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  API_URL: 'https://rlopez-vote-app.herokuapp.com'
 };

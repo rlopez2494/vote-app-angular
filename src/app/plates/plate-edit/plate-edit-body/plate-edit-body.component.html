@@ -1,10 +1,10 @@
 <div [formGroup]="form" class="plate-edit-body__container">
 
-    <h2 class="plate-edit__body__heading">Directive Board</h2>
+    <h2 class="plate-edit__body__heading">{{bodyName}}</h2>
 
     <div 
         class="plate-edit__seat" 
-        *ngIf="hasOwnProperty('president')"
+        *ngIf="bodyProperties.includes('president')"
     >
 
         <div class="plate-edit__seat-flex">
@@ -118,7 +118,7 @@
 
     <div 
         class="plate-edit__seat" 
-        *ngIf="hasOwnProperty('vicepresident')"
+        *ngIf="bodyProperties.includes('vicepresident')"
     >
 
         <div class="plate-edit__seat-flex">
@@ -223,7 +223,7 @@
 
     <div 
         class="plate-edit__seat"
-        *ngIf="hasOwnProperty('treasurer')"
+        *ngIf="bodyProperties.includes('treasurer')"
     >
 
         <div class="plate-edit__seat-flex">
@@ -332,7 +332,7 @@
 
     <div 
         class="plate-edit__seat"
-        *ngIf="hasOwnProperty('generalSecretary')"
+        *ngIf="bodyProperties.includes('generalSecretary')"
     >
 
         <div class="plate-edit__seat-flex">

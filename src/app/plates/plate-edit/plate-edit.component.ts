@@ -7,6 +7,9 @@ import { PlateService } from '../plate.service';
 import { Plate } from 'src/app/models/plate.model';
 import { CanDeactivateGuard } from 'src/app/can-deactivate-guard';
 
+// Environment variables
+import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'app-plate-edit',
   templateUrl: './plate-edit.component.html',
@@ -132,21 +135,19 @@ export class PlateEditComponent implements OnInit, CanDeactivateGuard{
   }
 
   onSubmitPlate() {
-    console.log(this.plateSubmission);
     this.showDetails = true;
   }
 
   submitPlate() {
 
-    const urlString = `http://localhost:9000/plates`
+    const urlString = `${environment.API_URL}/plates`
         const body = {
             ...this.plateSubmission.value,
             number: 4
         }
 
         this.http.post(urlString, body)
-            .subscribe((responseData) => {
-                console.log(responseData)
+            .subscribe(() => {               
                 alert('THE PLATE HAS BEEN SAVED SUCCESFULLY');
                 this.plateSubmission.reset();
                 this.router.navigate(['..'], {relativeTo: this.route});

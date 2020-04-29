@@ -44,8 +44,6 @@ export class PlateDetailsComponent implements OnInit {
 
       this.bodyNames = Object.keys(bodies);
 
-      console.log(this.bodyNames);
-
       this.locationUrl = window.location.pathname;
 
     }

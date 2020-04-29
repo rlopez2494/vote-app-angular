@@ -1,9 +1,15 @@
+// Angular / rxjs imports
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { DirectiveBoard, DisciplinaryCourt } from '../../../models/plate.model';
 import { HttpClient } from '@angular/common/http';
 import { ListErrorHandling } from '../interfaces/interfaces';
 import { ControlContainer, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+
+// Models
+import { DirectiveBoard, DisciplinaryCourt } from '../../../models/plate.model';
+
+// Environment variables
+import { environment } from '../../../../environments/environment'
 
 @Component({
   selector: 'app-plate-edit-body',
@@ -43,15 +49,13 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
   
   validElements: string[] = ['P', 'LI']
 
-  hasOwnProperty(seat: string) {
-    return (this.plateBody.hasOwnProperty(seat));
+  get bodyProperties() {
+    return Object.keys(this.plateBody);
   }
 
   ngOnInit() { 
     this.form = (<FormGroup>this.controlContainer.control);
-    this.form.valueChanges.subscribe(() => {
-      console.log(this.form.get('president').status)
-    })
+    console.log(this.bodyName)
   }
 
   ngAfterViewInit() {
@@ -98,7 +102,7 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
           if (!(this.users.length > 0)) this.loading = true;
           const value = Number(event.target.value);
           if (!(value === NaN)) {
-            const urlString = `http://localhost:9000/civ-users/list/${value}`;
+            const urlString = `${environment.API_URL}/civ-users/list/${value}`;
             this.subscription = this.http.get(urlString)
               .subscribe((responseData: any) => {
               if(responseData.length > 0) {

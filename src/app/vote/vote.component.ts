@@ -128,7 +128,6 @@ export class VoteComponent implements OnInit {
   
       this.voteService.submitVote(voteObject)
         .subscribe(responseData => {
-          console.log(responseData)
           alert('The vote was made successfully');
           this.router.navigate(['..'], { relativeTo: this.route });
         }, (error) => {

@@ -1,11 +1,16 @@
+// Angular Imports
 import { Injectable } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Plate } from '../models/plate.model';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
+// Models
+import { Plate } from '../models/plate.model';
+
+// Environment variables
+import { environment } from '../../environments/environment'
 
 @Injectable()
 
@@ -42,11 +47,11 @@ export class PlateService {
     valueNameSubscription: Subscription;
 
     getUser(value: number) {
-        return this.http.get(`http://localhost:9000/civ-users/${value}`);
+        return this.http.get(`${environment.API_URL}/civ-users/${value}`);
     }
 
     getCandidate(id: string) { 
-        return this.http.get(`http://localhost:9000/candidates/${id}`); 
+        return this.http.get(`${environment.API_URL}/candidates/${id}`); 
     }
 
     async validateUser(control: FormControl) : Promise<{[s: string]: boolean} | null> {
@@ -59,7 +64,6 @@ export class PlateService {
                 const { value } = control;
                 this.getUser(value)
                     .subscribe((userData: any) => {
-                        console.log(userData)
 
                         if (userData.candidate.length > 0) {
                             observer.next({'registeredAsCandidate': true});
@@ -67,7 +71,6 @@ export class PlateService {
                         } else {
                             const { body, seat } = valueNames;
                             this.submissionModal[body][seat] = { ...userData } 
-                            console.log(this.submissionModal);
                             observer.next(null);
                             observer.complete();
                         }
@@ -143,11 +146,11 @@ export class PlateService {
     }
 
     deletePlate(id: string): Observable<any> {
-        return this.http.delete(`http://localhost:9000/plates/${id}`);
+        return this.http.delete(`${environment.API_URL}/plates/${id}`);
     }
 
     getPlates(): Observable<any>{
-        return this.http.get(`http://localhost:9000/plates`)
+        return this.http.get(`${environment.API_URL}/plates`)
             .pipe(catchError(this.handleError));
     }
 

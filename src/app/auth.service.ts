@@ -1,10 +1,16 @@
+// Angular / rxjs imports
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { User } from './user.model';
 import { Router } from '@angular/router';
+
+// Models
+import { User } from './user.model';
+
+// Environment variables
+import { environment } from '../environments/environment';
 
 export interface AuthResponseData {
     _id: string;
@@ -44,13 +50,13 @@ export class AuthService {
             userData.email,
             userData._token
         )
-        console.log(loadedUser)
+        
         this.user.next(loadedUser);
     }
 
     logout() {
         
-        return this.http.get('http://localhost:9000/users/logout')
+        return this.http.get(`${environment.API_URL}/users/logout`)
             .pipe(
                 tap(() => {
                     this.user.next(null);
@@ -63,7 +69,7 @@ export class AuthService {
     }
 
     login(email: string, password: string): Observable<AuthResponseData> {
-        const urlString = 'http://localhost:9000/users/login';
+        const urlString = `${environment.API_URL}/users/login`;
         const body = { email, password };
 
         return this.http.post<AuthResponseData>(urlString, body)
@@ -76,7 +82,7 @@ export class AuthService {
     }
 
     signup(submissionForm: any): Observable<AuthResponseData> {
-        const urlString = `http://localhost:9000/users`;
+        const urlString = `${environment.API_URL}/users`;
         const requestBody = { ...submissionForm };
 
         return this.http.post<AuthResponseData>(urlString, requestBody)
