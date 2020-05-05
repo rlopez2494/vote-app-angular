@@ -1,184 +1,83 @@
-.home {
-    height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.alert {
-    background: rgb(255, 203, 203);
-    color: red;  
-}
-
-.alert--login {
-    padding: 15px 0;
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-.login__heading {
-    border-radius: 10px;
-    color: #333333;
-    background-color: #ffffff;
-    font-size: 25px;
-    font-weight: bold;
-    padding: 5px 20px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    top: -22px
-}
-
-/************************LOGIN FORM*****************************/
-.login {
-    position: relative;
-    width: 400px;
-    background-color: #333333;
-    border: none;
-    border-radius: 5px;
-    padding: 30px 0 25px 0;
-}
-.over-in {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.4);
-    top: 0;
-    width: 100%;
-    height: 100%;
-}
-.center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.login__form {
-    width: 100%;
-}
-
-.login__input-errors {
-    color: rgb(255, 109, 109);
-}
-
-.login__input-group {
-    margin: auto;
-    text-align: left;
-    width: 90%;
-    margin-bottom: 25px;
-}
-
-.login__input-group:first-child {
-    margin-bottom: 25px;
-}
-
-.login__input {
-    border: 1px solid rgb(7, 116, 150);
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    height: 50px;
-    font-size: 18px;
+.home__heading {
+    color: #333;
+    letter-spacing: 2px;
     text-align: center;
-    bottom: 20px;
+    font-size: 2.7rem;
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+.view {
+    min-width: 200px;
+    width: 20%;
+    cursor: pointer;
     outline: none;
 }
 
-.login__input[type="email"].ng-invalid.ng-dirty {
-    border: 1px solid rgb(255, 66, 66);
+.view, .view:visited {
+    color: rgb(26, 26, 26);
+    text-decoration: none;
+    transition: transform .25s;
 }
 
-.login__btn {
-    width: 120px;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 13px;
-    font-weight: bold;
-    padding: 10px;
-    cursor: pointer;
-    transition: background .2s;
+.view:hover {
+    transform: scale(1.05);
 }
 
-.login__buttons{
-    display: flex;
-    justify-content: space-around; 
-    width: 100%;
-    margin: 10px auto 0 auto;
+.view--1 {
+    position: relative;
+    bottom: 70px;
+}
+
+.view--3 {
+    position: relative;
+    top: 70px;
 }
 
 
-/*******************************LOGIN FIELDS*******************************/
-
-.login__link {
-    font-size: 1rem;
-    color: #ffffff;
+.vertical-center {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -55%);
 }
 
-.login__link-container {
-    text-align: right;
-    width: 90%;
-    margin: 20px auto;
-}
-
-.login__input-label {
-    font-size: 1.05rem;
-    text-align: left;
-    color: #ffffff;
-}
-
-
-/******************************* MISCUE ***********************************/
-.login__box {
-    text-align: center;
-    width: 100%;
-}
-
-.login__error-box {
-    margin: 20px auto 0 auto;
-    width: 90%;
-}
-
-.paragraph--error {
-    color: rgb(221, 16, 16);
-    padding: 0;
-    display: inline;
-}
-
-/***************************** MEDIA QUERIES ****************************/
-@media screen and (max-width: 790px) {
-    .realizado-por {
-        display: none;
-    }
-
-    .login-footer {
-        text-align: center;
-    }
-    .udo-nombre {
-        float: none;
+@media only screen and (max-width: 1300px) {
+    .view {
+        width: 30%;
     }
 }
 
-@media screen and (max-width: 430px) {
-
-    .login {
-        width: 92%;
+@media only screen and (max-height: 850px) {
+    .view--1, .view--3 {
+        position: static;
     }
-
-    .login__input {
-        font-size: 80%;
-        font-weight: bold;
-    }
-
 }
 
-@media screen and (max-width: 360px) {
-    .login__buttons {
+@media only screen and (max-width: 690px) {
+
+    .flex-container {
         flex-direction: column;
         align-items: center;
     }
+    
+    .vertical-center {
+        position: static;
+        top: 0;
+        left: 0;
+        transform: translate(0);
+    }
 
-    .login__btn {
-        margin-bottom: 10px;
+    .view--1, .view--3 {
+        position: static;
+    }
+
+    .view {
+        margin-bottom: 90px;
+        width: 80%;
+    }
+
+    .home__heading {
+        margin-top: 60px;
     }
 }
-

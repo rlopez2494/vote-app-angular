@@ -1,0 +1,200 @@
+.auth {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert {
+    background: rgb(255, 203, 203);
+    color: red;  
+}
+
+.alert--login {
+    padding: 15px 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.login__heading {
+    border-radius: 10px;
+    color: #333333;
+    background-color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5px 20px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: -22px;
+}
+
+
+/************************LOGIN FORM*****************************/
+.login {
+    position: relative;
+    width: 400px;
+    background-color: #333333;
+    border: none;
+    border-radius: 5px;
+    padding: 30px 0 25px 0;
+}
+.over-in {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login__form {
+    width: 100%;
+}
+
+.login__input-errors {
+    color: rgb(255, 109, 109);
+}
+
+.login__input-group {
+    margin: auto;
+    text-align: left;
+    width: 90%;
+    margin-bottom: 25px;
+}
+
+.login__input-group:first-child {
+    margin-bottom: 25px;
+}
+
+.login__input {
+    border: 1px solid rgb(7, 116, 150);
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+    bottom: 20px;
+    outline: none;
+}
+
+.login__input[type="email"].ng-invalid.ng-dirty {
+    border: 1px solid rgb(255, 66, 66);
+}
+
+.login__btn {
+    width: 120px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.login__buttons{
+    display: flex;
+    justify-content: space-around; 
+    width: 100%;
+    margin: 10px auto 0 auto;
+}
+
+
+/*******************************LOGIN FIELDS*******************************/
+
+.login__link {
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+.login__link-container {
+    text-align: right;
+    width: 90%;
+    margin: 20px auto;
+}
+
+.login__input-label {
+    font-size: 1.05rem;
+    text-align: left;
+    color: #ffffff;
+}
+
+
+/******************************* MISCUE ***********************************/
+.login__box {
+    text-align: center;
+    width: 100%;
+}
+
+.login__error-box {
+    margin: 20px auto 0 auto;
+    width: 90%;
+}
+
+.paragraph--error {
+    color: rgb(221, 16, 16);
+    padding: 0;
+    display: inline;
+}
+
+/***************************** MEDIA QUERIES ****************************/
+@media screen and (max-width: 790px) {
+
+    .login {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 0px;
+        background: transparent;
+    }
+
+    .login__input {
+        border: 2px solid #1976d2;
+        font-size: 1.7rem;
+        height: 70px;
+    }
+
+    .login__form {
+        margin-top: 140px;
+        margin-bottom: 50px;
+    }
+
+    .login__link {
+        color: #333;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    .login__link-container {
+        margin: 40px auto;
+    }
+
+    .login__heading {
+        top: 60px;
+        background-color: #1976d2;
+        color: #fff;
+        padding: 10px 40px;
+    }
+
+    .btn--auth {
+        width: auto;
+        padding: 20px 40px;
+        font-size: 1.4rem;
+    }
+
+    .login__input-label {
+        color: #333;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+}
+
+

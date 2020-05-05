@@ -1,4 +1,6 @@
 .plates {
+    margin-top: 50px;
+    padding: 0 100px;
     display: flex;
     align-items: center;
     align-content: flex-start;

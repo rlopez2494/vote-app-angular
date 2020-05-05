@@ -2,9 +2,29 @@
     display: flex;
     justify-content: center;
     text-transform: uppercase;
-    color: #ffffff;
     font-size: 10px;
-    background: rgb(0, 49, 75);
+    background: #1976d2;
+    height: 65px;
+    box-shadow: 1px 1px 5px;
+}
+
+.header__btn-container {
+    display: flex;
+    align-items: center;
+}
+
+.fa-sign-out-alt, .fa-github {
+    font-size: 1.7rem;
+    transition: color .2s;
+    color: #fff;
+    cursor: pointer;
+    transition: background .1s;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.fa-sign-out-alt:hover, .fa-github:hover {
+    background: rgba(0, 0, 0, .25);
 }
 
 .header__container {
@@ -15,11 +35,6 @@
     margin: 5px 0;
 }
 
-.btn--logout {
-    color: #fff;
-    margin-left: 10px;
-}
-
 .header__brand {
     display: flex;
     align-items: center;
@@ -27,12 +42,6 @@
 
 .header__brand__btn {
     display: none;
-}
-
-.header__brand__img {
-    margin: auto 12px;
-    width: 70px; 
-    height: 70px;  
 }
 
 .header__nav {
@@ -50,13 +59,14 @@
 
 .header__brand__heading{
     width: 220px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 450px) {
-    .header__container {
-        flex-direction: column;
-        align-items: center;
-    }
 
     .header {
         padding: 10px 0;

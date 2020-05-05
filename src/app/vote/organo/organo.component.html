@@ -1,67 +1,79 @@
-<div [formGroup]="form" class="organo">
+<div [formGroup]="form" class="body">
 
-    <h1>{{body.name}}</h1>
+    <h1 class="body__heading">{{body.name}}</h1>
 
-    <div class="organo__choices">
+    <div class="body__container">
 
-        <div class="organo__HEAD">
+        <div class="body__head">
 
             <ul>
-                <li>President</li>
-                <li>Vicepresident</li>
-                <li *ngIf="body.name !== 'Disciplinary Court'">Treasurer</li>
-                <li>General Secretary</li>
-
-                <!-- For future party list implementations -->
-                    
-                <!-- <li>
-                    <p>1er. Vocal</p>
-                    <p>2do. Vocal</p>
-                    <p>3er.Vocal</p>
-                </li> -->
+                <li class="list list--head">President</li>
+                <li class="list list--head">Vicepresident</li>
+                <li class="list list--head" *ngIf="body.name !== 'Disciplinary Court'">Treasurer</li>
+                <li class="list list--head">General Secretary</li>
             </ul>
 
         </div>
-        
-        <div 
-            class="organo__plancha"
-            *ngFor="let plate of body.plates; let i = index">
-            
-            <ul>
 
-                <li>
+        <!-- Swipe buttons with absolute position -->
+
+        <button 
+            type="button" 
+            class="btn-arrow btn-arrow--left"
+            (click)="swipe('left')">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <button 
+            type="button" 
+            class="btn-arrow btn-arrow--right"
+            (click)="swipe('right')">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!--  -->
+            
+        <div 
+            class="body__plates"
+            #bodyPlates>
+          
+            <ul 
+            class="body__plate"
+            *ngFor="let plate of body.plates; let i = index">
+
+                <li class="list list--select-all">
                     <p>SELECT ALL</p>
                     <input 
                         type="radio"
+                        class="radio radio--select-all"
                         formControlName="plateSelected" 
                         (click)="onSelectPlate(i)"
                         [value]="i"
                     />
                 </li>
 
-                <li>
-                    <h5>PLANCHA N {{i}}</h5>
+                <li class="list list--plate-number">
+                    <h5 class="heading heading--plate-number">{{i}}</h5>
                 </li>
 
                 
-                <li *ngFor="let seat of seatNames">
+                <li 
+                    class="list list--candidate"
+                    *ngFor="let seat of seatNames">
+
                     <p>{{body.plates[i][seat].user.name}}</p>
                     
                     <input 
                         type="radio" 
+                        class="radio radio--candidates"
                         [formControlName]="seat"
                         [value]="body.plates[i][seat]._id"
                     />
+
                 </li>
-           
-                <!-- For future party list implementations -->
-                <!-- <li>
-                    <h5>PARTY LIST</h5>
-                    <input type="radio"/>
-                </li> -->
 
             </ul>
-
+            
         </div>
 
     </div>

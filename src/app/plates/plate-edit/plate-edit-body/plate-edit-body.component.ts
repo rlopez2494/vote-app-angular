@@ -55,7 +55,6 @@ export class PlateEditBodyComponent implements OnInit, AfterViewInit {
 
   ngOnInit() { 
     this.form = (<FormGroup>this.controlContainer.control);
-    console.log(this.bodyName)
   }
 
   ngAfterViewInit() {

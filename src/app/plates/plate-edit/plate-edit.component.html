@@ -1,8 +1,6 @@
 <div class="plate-edit main-box">
 
-    <div class="plate-edit__heading">
-        <h1>REGISTRO DE PLANCHA</h1>
-    </div>
+    <h1 class="plate-edit__heading">Plate Registration</h1>
     
     <form 
         class="plate-edit__form"
@@ -14,7 +12,7 @@
 
             <div class="plate-edit__details">
     
-                <h3 class="plate-edit__details__heading">CONFIRMAR</h3>      
+                <h3 class="plate-edit__details__heading">CONFIRM</h3>      
             
                 <div 
                 class="plate-edit__details__body"
@@ -32,14 +30,14 @@
                            
                         <li class="plate-edit__list-item">
                             <p>
-                                <em>Presidente: </em>
+                                <em>President: </em>
                                 {{confirmPlate[body]['president'].name}} |
                                 {{confirmPlate[body]['president'].CIV}}
                             </p>
                         </li>
                         <li class="plate-edit__list-item">
                             <p>
-                                <em>Vicepresidente: </em>
+                                <em>Vicepresident: </em>
                                 {{confirmPlate[body]['vicepresident'].name}} |
                                 {{confirmPlate[body]['vicepresident'].CIV}}
                             </p>
@@ -48,14 +46,14 @@
                         class="plate-edit__list-item"
                         *ngIf="confirmPlate[body]['treasurer']">
                             <p>
-                                <em>Tesorero: </em>
+                                <em>Treasurer: </em>
                                 {{confirmPlate[body]['treasurer'].name}} |
                                 {{confirmPlate[body]['treasurer'].CIV}}
                             </p>
                         </li>
                         <li class="plate-edit__list-item">
                             <p>
-                                <em>Secretario General: </em>
+                                <em>General Secretary: </em>
                                 {{confirmPlate[body]['generalSecretary'].name}} |
                                 {{confirmPlate[body]['generalSecretary'].CIV}}
                             </p>
@@ -70,13 +68,13 @@
             
                     <button 
                         type="submit"
-                        class="btn btn--primary btn--confirm"
-                    >Confirmar y Guardar</button>
+                        class="btn plate-edit__btn plate-edit__btn--primary"
+                    >Save</button>
             
                     <button
-                        class="btn btn--primary btn--confirm"
+                        class="btn plate-edit__btn plate-edit__btn--warning"
                         (click)="closeDetails()"
-                    >Volver</button>
+                    >Close</button>
             
                 </div>
                 
@@ -86,43 +84,47 @@
         </div>
  
 
-        <app-plate-edit-body 
-            formGroupName="directiveBoard"
-            class="plate-edit__body"
-            [plateBody]="plateSubmission.value.directiveBoard"
-            [bodyName]="'directiveBoard'">
+        <div class="plate-edit__plates">
 
-        </app-plate-edit-body>
+            <app-plate-edit-body 
+                formGroupName="directiveBoard"
+                class="plate-edit__body"
+                [plateBody]="plateSubmission.value.directiveBoard"
+                [bodyName]="'directiveBoard'">
 
-        <app-plate-edit-body 
-            formGroupName="districtDirectiveBoard"
-            class="plate-edit__body"
-            [plateBody]="plateSubmission.value.districtDirectiveBoard"
-            [bodyName]="'districtDirectiveBoard'">
+            </app-plate-edit-body>
 
-        </app-plate-edit-body>
+            <app-plate-edit-body 
+                formGroupName="districtDirectiveBoard"
+                class="plate-edit__body"
+                [plateBody]="plateSubmission.value.districtDirectiveBoard"
+                [bodyName]="'districtDirectiveBoard'">
 
-        <app-plate-edit-body 
-            formGroupName="disciplinaryCourt"
-            class="plate-edit__body"
-            [plateBody]="plateSubmission.value.disciplinaryCourt"
-            [bodyName]="'disciplinaryCourt'">
+            </app-plate-edit-body>
 
-        </app-plate-edit-body>
+            <app-plate-edit-body 
+                formGroupName="disciplinaryCourt"
+                class="plate-edit__body"
+                [plateBody]="plateSubmission.value.disciplinaryCourt"
+                [bodyName]="'disciplinaryCourt'">
+
+            </app-plate-edit-body>
+
+        </div>
     
     
-        <div style="text-align: center;">
+        <div class="plate-edit__btn-container">
 
             <button 
                 type="button"
-                class="btn btn--primary"
+                class="btn plate-edit__btn plate-edit__btn--primary"
                 (click)="onSubmitPlate()"
                 [disabled]="(!plateSubmission.touched || !plateSubmission.valid)"
             >GUARDAR</button>
 
             <button
                 type="button"
-                class="btn btn--warning"
+                class="btn plate-edit__btn plate-edit__btn--warning"
                 (click)="onCancelSubmit()"
             >CANCELAR</button>
 

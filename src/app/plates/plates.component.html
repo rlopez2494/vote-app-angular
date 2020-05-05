@@ -20,8 +20,8 @@
     </ng-container>
 
     <app-plate-item 
-        *ngIf="showPlates && (plates.length < 3)"
-        [addPlate]="true">
+        [addPlate]="true"
+        [canAdd]="showPlates && (plates.length < 3)">
             
     </app-plate-item>
 

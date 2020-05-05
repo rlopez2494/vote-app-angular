@@ -4,43 +4,38 @@
         <div class="alert-modal">
             <p class="vote__modal-paragraph">There are no plates already registered, please register at least two of them</p>
             <div class="btn-container btn-container--left">
-                <button class="btn btn--secondary" [routerLink]="['/plates']">
-                    Go to plates
+                <button class="btn btn--secondary" [routerLink]="['/home']">
+                    Go to home
                 </button>
             </div>
         </div>
     </div>
 
     <form 
+        class="vote__form"
         [formGroup]="voteSubmission"
         (ngSubmit)="onVoteSubmit()"
         *ngIf="(data.length > 1)">
-
-        
-        <h1 class="vote__heading">DISTRICT BODIES</h1>
-        
         
         <app-organo 
             *ngFor="let body of bodies"
             [body]="body"
             [formGroupName]="setBodyName(body.name)"
             [bodyName]="setBodyName(body.name)">
-            
         </app-organo>
 
         <div class="vote__buttons">
 
             <button
-                class="btn btn--primary"
+                class="btn plate-edit__btn plate-edit__btn--primary"
                 type="submit"
                 [disabled]="(!voteSubmission.dirty)"
                 >VOTE
             </button>
         
-    
             <button 
                 type="button"
-                class="btn btn--secondary"
+                class="btn plate-edit__btn plate-edit__btn--warning"
                 (click)="clearVote()"
                 >CLEAR
             </button>

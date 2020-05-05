@@ -1,0 +1,178 @@
+<div class="auth">
+
+    <div class="login">
+
+        <div class="over-in" *ngIf="isLoading">
+            <app-loading-spinner class="center">
+
+            </app-loading-spinner>
+        </div>
+
+        <p *ngIf="!showRegister" class="login__heading">LOG IN</p>
+        <p *ngIf="showRegister" class="login__heading">SIGN UP</p>
+    
+        <form 
+            *ngIf="!showRegister"
+            class="login__form" 
+            [formGroup]="loginSubmission"
+            (ngSubmit)="onLogin()">
+
+            <div class="login__box">
+
+                <div class="login__input-group">
+                    <label class="login__input-label" for="email">Email</label>
+                    <input
+                    id="email" 
+                    class="login__input"
+                    name="email"
+                    type="email"
+                    formControlName="email"  
+                    placeholder="user@account.com"
+                    />
+                    <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+                </div>
+
+                <div class="login__input-group">
+                    <label class="login__input-label" for="password">Password</label>
+                    <input 
+                    id="password"
+                    class="login__input"
+                    name="password"
+                    type="password"
+                    formControlName="password"
+                    />
+                </div>
+
+                <div class="login__link-container">
+                    <a class="login__link" href="#">Forgot your password?</a>
+                </div>
+
+                <div class="alert alert--login" *ngIf="error">
+                    <p>{{error}}</p>
+                </div>
+
+                <div class="login__buttons">
+
+                    <button
+                        class="btn btn--primary btn--auth"
+                        type="submit"
+                        [disabled]="(!loginSubmission.touched || !loginSubmission.valid)"
+                        >LOG IN
+                    </button>
+                
+            
+                    <button 
+                        (click)="onShowSignup()"
+                        class="btn btn--secondary btn--auth"
+                        >SIGN UP
+                    </button>
+            
+                </div>
+
+            </div> 
+    
+        </form>
+
+        <form 
+            *ngIf="showRegister"
+            class="login__form" 
+            [formGroup]="registerSubmission"
+            (ngSubmit)="onSignup()">
+
+            <div class="login__box">
+
+                <div class="login__input-group">
+                    <label class="login__input-label" for="name">Name</label>
+                    <input
+                    id="name" 
+                    class="login__input"
+                    type="text"
+                    formControlName="name"  
+                    placeholder="Insert name"
+                    />
+                    <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+                </div>
+
+                <div class="login__input-group">
+                    <label class="login__input-label" for="last-name">Last name</label>
+                    <input
+                    id="last-name" 
+                    class="login__input"
+                    type="text"
+                    formControlName="lastName"  
+                    placeholder="Insert last name"
+                    />
+                    <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+                </div>
+
+                <div class="login__input-group">
+                    <label class="login__input-label" for="email">Email</label>
+                    <input
+                    id="email" 
+                    class="login__input"
+                    type="email"
+                    formControlName="email"  
+                    placeholder="user@account.com"
+                    />
+                    <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+                </div>
+
+                <div class="login__input-group">
+                    <label class="login__input-label" for="password">Password</label>
+                    <input 
+                    id="password"
+                    class="login__input"
+                    name="password"
+                    type="password"
+                    formControlName="password"
+                    />
+                </div>
+
+                <div class="login__input-group">
+                    <label class="login__input-label" for="repeat-password">Repeat password</label>
+                    <input 
+                    id="repeat-password"
+                    class="login__input"
+                    name="password"
+                    type="password"
+                    formControlName="repeatPassword"
+                    />
+                </div>
+
+                <div class="alert alert--login" *ngIf="error">
+                    <p>{{error}}</p>
+                </div>
+
+                <div class="login__link-container">
+                    <a 
+                    class="login__link" 
+                    href="#"
+                    *ngIf="!showRegister">Forgot your password?
+                    </a>
+                </div>
+
+                <div class="login__buttons">
+            
+                    <button 
+                        class="btn btn--secondary btn--auth" 
+                        type="submit"
+                        [disabled]="(!registerSubmission.touched || !registerSubmission.valid)"
+                        >SIGN UP
+                    </button>
+
+                    <button
+                        (click)="onCancelSignUp()"
+                        class="btn btn--warning btn--auth"
+                        type="button"
+                        >CANCEL
+                    </button>
+            
+                </div>
+
+            </div> 
+    
+        </form>
+        
+    </div>
+
+</div>

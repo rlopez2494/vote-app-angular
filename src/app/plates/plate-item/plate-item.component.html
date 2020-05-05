@@ -1,9 +1,9 @@
 <div class="plate">
 
     <div 
-        class="plate-add"
         *ngIf="(addPlate)"
         (click)="onAddPlate()"
+        [ngClass]="(canAdd) ? 'plate-add': 'plate-disabled'"
     >
         <div class="plate-add__container">
 

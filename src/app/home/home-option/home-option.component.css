@@ -1,0 +1,39 @@
+.view__container {
+    border: none;
+    border-radius: 3px;
+    height: 250px;
+    position: relative;
+    box-shadow: 5px 5px 10px;
+    overflow: hidden;
+}
+
+.view__img {
+    transform: scale(1.3);
+    position: relative;
+    bottom: 10px;
+}
+
+.view__heading {
+    position: relative;
+    bottom: 10px;
+    font-size: 1.4rem;
+    color: #333;
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+@media only screen and (max-width: 690px) {
+    
+    .view__container {
+        height: 100% 
+    } 
+
+    .view__heading {
+        font-size: 2.4rem;
+    }
+
+}

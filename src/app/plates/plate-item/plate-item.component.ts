@@ -11,6 +11,7 @@ export class PlateItemComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   @Input() addPlate: boolean = false;
+  @Input() canAdd: boolean;
   @Input() plate: Object;
   @Output() showPlate: EventEmitter<any> = new EventEmitter();
 
@@ -23,7 +24,11 @@ export class PlateItemComponent implements OnInit {
   }
 
   onAddPlate() {
-    this.router.navigate(['plateEdit'], { relativeTo: this.route });
+    if (this.canAdd) {
+      return this.router.navigate(['plateEdit'], { relativeTo: this.route });
+    }
+
+    alert('You cannot add more than 3 plates');
   }
 
 }

@@ -4,15 +4,7 @@
         
         <div class="header__brand">
 
-            <img 
-                class="header__brand__img"
-                src="assets/images/udo-logo.png" 
-                alt="udo-logo-color"
-            />
-
-            <div>
-                <h1 class="header__brand__heading">sistema electoral electronico</h1>
-            </div>
+            <a [routerLink]="['/home']" class="header__brand__heading">Voting App</a>
 
         </div>
 
@@ -20,24 +12,33 @@
 
             <button 
                 *ngIf="showAddPlates"
-                class="btn btn--secondary btn--logout"
+                class="btn btn--header"
                 [routerLink]="['/plates']">
                 Plates
             </button>
 
-            <button 
+            <button
                 *ngIf="showVote"
-                class="btn btn--warning btn--logout"
+                class="btn btn--header"
                 [routerLink]="['/vote']">
                 Vote
             </button>
 
-            <button 
+            <a
+                href="https://github.com/rlopez2494/vote-app-angular"
+                class="link link--github"
+                target="_blank">
+
+                <i class="fab fa-github"></i>
+            </a>
+
+            <a
                 *ngIf="showLogout"
-                class="btn btn--primary btn--logout"
-                (click)="onLogout()">
-                Log out
-            </button>
+                (click)="onLogout()"
+                class="header__logout">
+
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
             
         </div>
     

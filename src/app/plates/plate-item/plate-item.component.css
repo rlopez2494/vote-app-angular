@@ -169,6 +169,15 @@
     transition: background .25s ease;
 }
 
+.plate-disabled{ 
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: grey;
+    text-align: center;
+    cursor: default;
+}
+
 .plate-add:hover {
     background: rgba(17, 66, 32, 0.99);
 }

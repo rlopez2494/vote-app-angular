@@ -13,10 +13,40 @@
     text-align: center;
     display: flex;
     justify-content: space-between;
-    padding: 0 100px 25px 100px;
+    width: 400px;
+    margin: 0 auto 20px auto;
 }
 
 .vote__modal-paragraph {
     margin-bottom: 20px;
     font-weight: bold;
+}
+
+.vote__form {
+    width: 100%;
+}
+
+.plate-edit__btn {
+    background: #fff;
+    color: #1976d2;
+    border: none;
+    margin-right: 50px;
+    font-size: 1rem;
+    padding: 8px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px #333;
+    transition: background .1s, 
+        color .1s, 
+        border-color .1s,
+        box-shadow .1s;
+}
+
+.plate-edit__btn--warning:hover {
+    background: rgb(250, 46, 46);
+    color: #fff;
+}
+
+.plate-edit__btn--primary:hover {
+    background: #1A7AAB;
+    color: #fff;
 }

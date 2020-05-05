@@ -1,7 +1,10 @@
 // Angular imports
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { ControlContainer, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
+
+// Debounce from underscore js
+import { debounce } from 'underscore';
 
 // Body interface (reference in the vote.interface.ts file)
 import { Body } from 'src/app/interfaces/vote.interfaces';
@@ -21,9 +24,48 @@ export class OrganoComponent implements OnInit, OnDestroy {
   form: FormGroup;
   formSubscription: Subscription;
 
+  scrollAmmout: number;
+
+  @ViewChild('bodyPlates', { static: true }) bodyPlates: ElementRef;
+
   constructor(private controlContainer: ControlContainer) { }
 
+  handleTouch() {
+    const platesElement = this.bodyPlates.nativeElement;
+    
+    const leftScroll = platesElement.scrollLeft;
+
+      if(leftScroll < 153) {
+        platesElement.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+      if(leftScroll > 153 && leftScroll < 462) {
+       
+        platesElement.scrollTo({
+          top: 0,
+          left: 306,
+          behavior: 'smooth'
+        });
+      }
+      if(leftScroll > 462) {
+        platesElement.scrollTo({
+          top: 0,
+          left: 609,
+          behavior: 'smooth'
+        });
+      } 
+ 
+  }
+
   ngOnInit() {
+    const platesElement = this.bodyPlates.nativeElement;
+    
+    platesElement.addEventListener('touchmove', debounce(this.handleTouch.bind(this), 1000));
+
+
     // Definition of form group reveived from parent component
     this.form = (<FormGroup>this.controlContainer.control);
 
@@ -84,6 +126,40 @@ export class OrganoComponent implements OnInit, OnDestroy {
     if(this.formSubscription) {
       this.formSubscription.unsubscribe(); 
     }
+  }
+
+  swipe(side: string) {
+
+    const scrollSteps: number = this.body.plates.length;
+    const platesElement = this.bodyPlates.nativeElement;
+    const leftScroll = platesElement.scrollLeft;
+    const { scrollWidth } = platesElement;
+
+    if(side === 'right' && leftScroll < 609) {
+      if (this.scrollAmmout === undefined) {
+        this.scrollAmmout = leftScroll + (scrollWidth / scrollSteps);
+      } else {
+        this.scrollAmmout = this.scrollAmmout + (scrollWidth / scrollSteps);
+      }
+
+      platesElement.scrollTo({
+        top: 0,
+        left: this.scrollAmmout,
+        behavior: 'smooth'
+      });
+
+    } else if(side === 'left' && leftScroll >= 303) {
+
+      this.scrollAmmout = this.scrollAmmout - (scrollWidth / scrollSteps);
+      
+      platesElement.scrollTo({
+        top: 0,
+        left: this.scrollAmmout,
+        behavior: 'smooth'
+      });
+
+    } 
+  
   }
 
   onSelectPlate(index: number) {

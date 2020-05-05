@@ -1,6 +1,8 @@
 <div [formGroup]="form" class="plate-edit-body__container">
 
-    <h2 class="plate-edit__body__heading">{{bodyName}}</h2>
+    <h2 *ngIf="bodyName === 'directiveBoard'" class="plate-edit__body__heading">Directive Board</h2>
+    <h2 *ngIf="bodyName === 'districtDirectiveBoard'" class="plate-edit__body__heading">District Directive Board</h2>
+    <h2 *ngIf="bodyName === 'disciplinaryCourt'" class="plate-edit__body__heading">Disciplinary Court</h2>
 
     <div 
         class="plate-edit__seat" 
@@ -21,7 +23,7 @@
                     formControlName="president"
                     class="plate-edit__input"
                     (keyup)="searchUsers($event)"
-                    placeholder="Ingrese CIV..."
+                    placeholder="Eg: 657578..."
                     />
                     
                     <ul 
@@ -134,7 +136,7 @@
                     formControlName="vicepresident"
                     class="plate-edit__input"
                     (keyup)="searchUsers($event)"
-                    placeholder="Ingrese CIV..."
+                    placeholder="Eg: 657578..."
                     />
     
                     <ul 
@@ -170,13 +172,13 @@
                             (click)="handleChange('vicepresident' , user['CIV'])"
                             class="autocomplete__item"   
                         >
-                            
-                            <p class="autocomplete__item__right">
-                                {{user.CIV}}
-                            </p>
-    
+                        
                             <p class="autocomplete__item__left">
                                 {{user.name}}
+                            </p>
+
+                            <p class="autocomplete__item__right">
+                                {{user.CIV}}
                             </p>
                         
                         </li>
@@ -240,7 +242,7 @@
                     formControlName="treasurer"
                     class="plate-edit__input"
                     (keyup)="searchUsers($event)"
-                    placeholder="Ingrese CIV..."
+                    placeholder="Eg: 657578..."
                     />
     
                     <ul 
@@ -277,12 +279,12 @@
                             class="autocomplete__item"   
                         >
                             
-                            <p class="autocomplete__item__right">
-                                {{user.CIV}}
-                            </p>
-    
                             <p class="autocomplete__item__left">
                                 {{user.name}}
+                            </p>
+
+                            <p class="autocomplete__item__right">
+                                {{user.CIV}}
                             </p>
                         
                         </li>
@@ -349,7 +351,7 @@
                     formControlName="generalSecretary"
                     class="plate-edit__input"
                     (keyup)="searchUsers($event)"
-                    placeholder="Ingrese CIV..."
+                    placeholder="Eg: 657578..."
                     />
     
                     <ul 
@@ -385,13 +387,13 @@
                             (click)="handleChange('generalSecretary' , user['CIV'])"
                             class="autocomplete__item"   
                         >
+
+                            <p class="autocomplete__item__left">
+                                {{user.name}}
+                            </p>
                             
                             <p class="autocomplete__item__right">
                                 {{user.CIV}}
-                            </p>
-    
-                            <p class="autocomplete__item__left">
-                                {{user.name}}
                             </p>
                         
                         </li>

@@ -1,5 +1,5 @@
+// Core imports
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { PlateService } from './plate.service';
 
@@ -21,7 +21,6 @@ export class PlatesComponent implements OnInit {
   showPlates: boolean = false;
 
   ngOnInit() {
-
     this.plateService.getPlates()
       .subscribe((responseData: Object[]) => {
           this.showPlates = true;
@@ -30,7 +29,6 @@ export class PlatesComponent implements OnInit {
         alert(error)
         this.router.navigate(['']);
       });
-
   }
 
   onSubmitDeletePlate(event: any) {

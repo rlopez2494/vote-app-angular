@@ -12,12 +12,16 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './home/home.component';
+import { HomeOptionComponent } from './home/home-option/home-option.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent,
+    HomeOptionComponent
   ],
   imports: [
     BrowserModule,

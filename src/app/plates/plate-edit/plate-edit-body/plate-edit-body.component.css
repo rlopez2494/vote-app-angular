@@ -1,9 +1,10 @@
 .plate-edit__seat {
     width: 85%;
     padding: 3px 0;
-    background: #1C1A1A;
+    background: rgb(233, 233, 233);
     margin: 0 auto 10px auto;
     border-radius: 10px;
+    box-shadow: 1px 1px 5px;
 }
 
 .plate-edit__seat-flex {
@@ -14,6 +15,7 @@
 
 .plate-edit__input-error {
     color: red;
+    margin: 10px 0 5px 0;
 }
 
 .ng-invalid.ng-touched + .plate-edit__input-error {
@@ -106,9 +108,9 @@
 }
 
 .plate-edit__seat__heading {
-    color: #FFFFFF;
+    color: #333;
     margin: 15px 15px 15px 0;
-    font-weight: 400;
+    font-weight: 600;
     position: relative;
     left: 15px;
     font-size: 1.25rem;
@@ -116,15 +118,16 @@
 
 .plate-edit__input {
     border-radius: 3px;
+    border: 1px solid black;
     outline: none;
-    padding: 4px 5px;
+    padding: 7px 5px;
     width: 100%;
     font-size: 1.05rem;
 }
 
 .signal {
     background: rgb(27, 27, 27);
-    border: 5px solid #D6D6D6;
+    border: 5px solid black;
     border-radius: 50%;
     padding: 7.2px;
     margin: 0 12px;
@@ -135,7 +138,7 @@
     background: #03A50E;
 }
 .signal--warning {
-    background: rgb(212, 12, 12);
+    background: red;
 }
 .signal--waiting {
     background-color: rgb(184, 184, 2);
@@ -143,9 +146,8 @@
 
 @media screen and (max-width: 700px) {
     .plate-edit__seat {
-        padding: 20px 0;
-        width: 70%;
-        min-width: 300px;
+        padding: 15px 0;
+        width: 90%;
     }
 
     .plate-edit__seat-flex {
@@ -155,8 +157,20 @@
 
     .plate-edit__seat__heading {
         margin: 15px 0;
-        text-decoration: underline;
+        font-size: 1.5rem;
         position: static;
+    }
+
+    .plate-edit__check-input {
+        width: 80%;
+    }
+
+    .plate-edit__input {
+        font-size: 1.5rem;
+    }
+
+    .signal {
+        transform: scale(1.4);
     }
 
 }

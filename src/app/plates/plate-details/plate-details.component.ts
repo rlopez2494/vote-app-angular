@@ -1,3 +1,4 @@
+// Core imports
 import { 
   Component, 
   OnInit, 
@@ -5,9 +6,9 @@ import {
   Output, 
   Input 
 } from '@angular/core';
+
+// Components/plates
 import { Plate } from 'src/app/models/plate.model';
-import { PlateService } from '../plate.service';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-plate-details',
@@ -16,11 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class PlateDetailsComponent implements OnInit {
 
-  constructor(
-    private plateService: PlateService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) { }
+  constructor() { }
 
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Output() delete: EventEmitter<any> = new EventEmitter();

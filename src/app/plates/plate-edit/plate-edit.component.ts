@@ -1,8 +1,11 @@
+// Core imports
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+
+// Components/Services
 import { PlateService } from '../plate.service';
 import { Plate } from 'src/app/models/plate.model';
 import { CanDeactivateGuard } from 'src/app/can-deactivate-guard';
@@ -45,7 +48,6 @@ export class PlateEditComponent implements OnInit, CanDeactivateGuard{
   }
 
   ngOnInit() {
-
 
     this.plateSubmission = new FormGroup({
       'directiveBoard': new FormGroup({
@@ -111,7 +113,6 @@ export class PlateEditComponent implements OnInit, CanDeactivateGuard{
       })
     });
 
-    
   }
 
   isValidUser(control: FormControl) : Promise<{[s: string]: boolean} | null> {
@@ -141,19 +142,19 @@ export class PlateEditComponent implements OnInit, CanDeactivateGuard{
   submitPlate() {
 
     const urlString = `${environment.API_URL}/plates`
-        const body = {
-            ...this.plateSubmission.value,
-            number: 4
-        }
+    const body = {
+        ...this.plateSubmission.value,
+        number: 4
+    }
 
-        this.http.post(urlString, body)
-            .subscribe(() => {               
-                alert('THE PLATE HAS BEEN SAVED SUCCESFULLY');
-                this.plateSubmission.reset();
-                this.router.navigate(['..'], {relativeTo: this.route});
-            }, (err) => {
-                console.log(err);
-            })
+    this.http.post(urlString, body)
+        .subscribe(() => {               
+            alert('THE PLATE HAS BEEN SAVED SUCCESFULLY');
+            this.plateSubmission.reset();
+            this.router.navigate(['..'], {relativeTo: this.route});
+        }, (err) => {
+            console.log(err);
+        })
 
   }
 

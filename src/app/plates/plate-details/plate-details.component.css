@@ -6,13 +6,15 @@
     left: 50%;
     transform: translate(-50%, -50%);
     min-width: 411px;
-    background: white;
+    max-height: 710px;
+    overflow-y: scroll;
+    background: #fff;
     display: flex;
     flex-direction: column;
     font-size: 1.05rem;
 }
 
-.plate-edit__details__heading {
+.plate-edit__plate-heading {
     background: #1A7AAB;
     font-weight: bold;
     margin:0;
@@ -24,29 +26,100 @@
     justify-content: center;
 }
 
+.plate-edit__body-details {
+    padding: 20px 30px;
+}
+
+.plate-edit__body-details:nth-child(even) {
+    background: #1B252B;
+    color: white;
+}
+
+.plate-edit__body-details:nth-child(odd) {
+    background: #fff;
+}
+
+.plate-edit__details-highlight {
+    display: flex;
+}
+
+.fa-university {
+    color: #03A50E;
+    margin-right: 10px;
+    font-size: 1.3rem;
+}
+
 .plate-edit__list {
     margin: 15px;
 }
 
 .plate-edit__list-item {
     margin: 10px;
-}
-
-.plate-edit__details__highlight {
     display: flex;
+    justify-content: space-between;
 }
 
-.plate-edit__details__body {
-    padding: 20px 30px;
+.plate-edit__seat--key {
+    font-weight: 600;
 }
-.plate-edit__details__body:nth-child(even) {
-    background: #1B252B;
-    color: white;
+
+.plate-edit__seat--value {
+    margin-left: 15px;
 }
-.plate-edit__details__body:nth-child(odd) {
-    background: #CFCFCF;
+
+/* ----------------- Buttons -------------- */
+
+.plate-edit__btn-container {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
 }
-.plate-edit__details__body h5:first-child {
-    color: #03A50E;
-    margin-right: 5px;
+
+.plate-edit__btn:last-child {
+    margin-right: 0;
+}
+
+.plate-edit__btn {
+    background: #fff;
+    color: #1976d2;
+    border: none;
+    margin-right: 50px;
+    font-size: 1rem;
+    padding: 8px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px #333;
+    transition: background .1s, 
+        color .1s, 
+        border-color .1s,
+        box-shadow .1s;
+}
+
+.plate-edit__btn--warning:hover {
+    background: rgb(250, 46, 46);
+    color: #fff;
+}
+
+.plate-edit__btn--primary:hover {
+    background: #1A7AAB;
+    color: #fff;
+}
+
+/* -----------------  -------------- */
+
+
+@media screen and (max-width: 1050px) {
+    .plate-edit__list-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .plate-edit__details-highlight {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-height: 710px) {
+    .plate-edit__details {
+        height: 95%;
+    }
 }
