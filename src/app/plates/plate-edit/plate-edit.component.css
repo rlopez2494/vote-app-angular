@@ -24,15 +24,14 @@
 }
 
 .plate-edit__body {
-    /* background: #1B252B; */ /*Just in case i want this previous color*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background: #1976d2;
     width: 770px;
     border: 1px solid #333;
     box-shadow: 1px 1px 5px;
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding-bottom: 20px;
     margin: 0 auto 30px auto;
 }

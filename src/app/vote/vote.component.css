@@ -17,11 +17,6 @@
     margin: 0 auto 20px auto;
 }
 
-.vote__modal-paragraph {
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
 .vote__form {
     width: 100%;
 }
@@ -49,4 +44,8 @@
 .plate-edit__btn--primary:hover {
     background: #1A7AAB;
     color: #fff;
+}
+
+.plate-edit__btn:last-child {
+    margin-right: 0;
 }

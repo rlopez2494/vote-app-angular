@@ -41,6 +41,7 @@ export class OrganoComponent implements OnInit, OnDestroy {
           left: 0,
           behavior: 'smooth'
         });
+        this.scrollAmmout = 0;
       }
       if(leftScroll > 153 && leftScroll < 462) {
        
@@ -49,6 +50,7 @@ export class OrganoComponent implements OnInit, OnDestroy {
           left: 306,
           behavior: 'smooth'
         });
+        this.scrollAmmout = 306;
       }
       if(leftScroll > 462) {
         platesElement.scrollTo({
@@ -56,6 +58,8 @@ export class OrganoComponent implements OnInit, OnDestroy {
           left: 609,
           behavior: 'smooth'
         });
+
+        this.scrollAmmout = 609;
       } 
  
   }

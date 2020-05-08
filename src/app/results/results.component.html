@@ -1,0 +1,56 @@
+<div class="results main-box">
+
+    <div class="over" *ngIf="errorMessage && !isLoading">
+        <div class="alert-modal">
+            <p class="alert-modal__paragraph">{{errorMessage}}</p>
+            <div class="btn-container btn-container--left">
+                <button class="btn btn--secondary" [routerLink]="['/home']">
+                    Go to home
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="results__heading" *ngIf="!errorMessage && !isLoading">Election results</h1>
+
+    <div class="results__bodies">
+
+        <ng-container *ngIf="voteResults">
+
+            <app-results-body
+                class="results__body"
+                [bodyName]="'directiveBoard'"
+                [plateBody]="voteResults.directiveBoard">
+
+            </app-results-body>
+
+            <app-results-body
+                class="results__body"
+                [bodyName]="'districtDirectiveBoard'"
+                [plateBody]="voteResults.districtDirectiveBoard">
+                
+            </app-results-body>
+
+            <app-results-body
+                class="results__body"
+                [bodyName]="'disciplinaryCourt'"
+                [plateBody]="voteResults.disciplinaryCourt">
+                
+            </app-results-body>
+
+        </ng-container>
+        
+
+    </div>
+
+    <div class="plate-edit__btn-container" *ngIf="!errorMessage && !isLoading">
+
+        <button 
+            type="button"
+            class="btn plate-edit__btn plate-edit__btn--primary"
+            [routerLink]="['/home']"
+        >GO BACK</button>
+
+    </div>
+
+</div>

@@ -1,8 +1,9 @@
 /* --------------- Main plate styles --------------- */
 .plate {
-    background: #1B252B;
+    background: #1976d2;
     border: none;
-    border-radius: 15px;
+    box-shadow: 1px 1px 5px;
+    border-radius: 5px;
     margin: 20px 10px;
     position: relative;
     overflow: hidden;
@@ -64,8 +65,8 @@
 }
 
 .plate__body--success {
-    background: #03A50E;
-    border: 5px solid #D6D6D6;
+    background: rgb(4, 255, 4);
+    border: 5px solid #333;
     border-radius: 50%;
     padding: 7.2px;
     margin: 0 12px;
@@ -77,18 +78,20 @@
 }
 
 .plate__presentation {
-    background: #1A7AAB;
+    background: #fff;
     font-size: 40px;
     margin: 0 5px 0 0;
     flex-grow: 2;
-    color: #E1FCE8;
+    color: #333;
     padding-left: 15px;
 }
 
 .plate__presentation__btn {
     flex-grow: 1;
-    background: #C46565;
-    color: #E1FCE8;
+    background: rgb(255, 68, 68);
+    border: none;
+    box-shadow: 1px 1px 5px #333;
+    color: #fff;
     font-size: 25px;
     font-weight: bold;
     padding: 0;
@@ -179,14 +182,7 @@
 }
 
 .plate-add:hover {
-    background: rgba(17, 66, 32, 0.99);
-}
-
-.plate-add:hover 
-.plate-add__heading,
-.plate-add:hover 
-.plate-add__plus {
-    color: #fff;
+    background: rgb(0, 187, 0);
 }
 
 .plate-add:hover 
@@ -238,20 +234,50 @@
     .plate__img-container {
         display: none;
     }
+
     #main-section, #header {
         min-width: 420px;
     }
+
     .plate {
-        width: 90%;
+        width: 100%;
+        margin: 20px auto;
     }
+
     .plate__bodies {
         width: 90%;
+        padding: 0;
+        margin: auto;
+        border: none;
     }
+
     .plate__bodies h5 {
         font-size: 25px;
         width: 85%;
     }
+
     .plate-add__container h1:nth-child(2) {
         display: none;
     }
+
+    .plate__presentation {
+        display: none;
+    }
+
+    .plate__down {
+        justify-content: center;
+    }
+
+    .plate__presentation__btn {
+        flex-grow: 0;
+        padding: 5px 0;
+        margin: 5px 0;
+        width: 95%;
+    }
+
+    .plate__body h5 {
+        max-width: none;
+        padding: 5px 15px 5px 10px;
+    }
+
 }

@@ -14,6 +14,8 @@ import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { HomeOptionComponent } from './home/home-option/home-option.component';
+import { ResultsComponent } from './results/results.component';
+import { ResultsBodyComponent } from './results/results-body/results-body.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { HomeOptionComponent } from './home/home-option/home-option.component';
     HeaderComponent,
     PageNotFoundComponent,
     HomeComponent,
-    HomeOptionComponent
+    HomeOptionComponent,
+    ResultsComponent,
+    ResultsBodyComponent
   ],
   imports: [
     BrowserModule,

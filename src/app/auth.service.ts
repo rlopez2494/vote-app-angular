@@ -2,7 +2,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, exhaustMap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -60,7 +60,6 @@ export class AuthService {
             .pipe(
                 tap(() => {
                     this.user.next(null);
-                    alert('Logged out successfully');
                     this.router.navigate(['']);
                     localStorage.removeItem('userData');
                 }),
@@ -92,7 +91,25 @@ export class AuthService {
                     this.handleAuthentication(responseData as User);
                 })
             );
-    } 
+    }
+
+    changePassword(submissionForm: any): Observable<any> {
+
+        const { 
+            email, 
+            currentPassword, 
+            password
+        } = submissionForm;
+
+        return this.login(email, currentPassword)
+            .pipe(exhaustMap(() => {
+                
+                return this.http.patch(`${environment.API_URL}/users/me`, { password })
+                 .pipe(catchError(this.handleError));
+
+            }), catchError((error) => throwError(error)))
+
+    }
 
     // Central function to generate an authenticated user
     private handleAuthentication({ _id, name, lastName, email, token }: User) {
@@ -130,6 +147,9 @@ export class AuthService {
                 errorMessage = 'You are not authorized';
                 break;
 
+            case 'INVALID_OPERATION':
+                errorMessage = 'Invalid operation, try again'
+                break;
         }
 
         return throwError(errorMessage);

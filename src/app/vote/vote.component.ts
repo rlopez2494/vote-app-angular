@@ -23,6 +23,7 @@ export class VoteComponent implements OnInit {
   bodies: Object[];
   voteSubmission: FormGroup;
   voteDate: Date = new Date();
+  isLoading: boolean = true;
 
   ngOnInit() {
 
@@ -59,6 +60,7 @@ export class VoteComponent implements OnInit {
           // Making of the vote plates
           this.bodies = this.getBodies(this.data);
           
+          this.isLoading = false;
       }, (error) => {
         alert(error)
         this.router.navigate(['']);
@@ -141,6 +143,5 @@ export class VoteComponent implements OnInit {
     const check = confirm('Are you sure you want to restart the vote fields?')
     if (check) this.voteSubmission.reset();
   }
-
 
 }

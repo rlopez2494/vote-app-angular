@@ -1,0 +1,83 @@
+<div class="results-body__container">
+    <h2 *ngIf="bodyName === 'directiveBoard'" class="results-body__body-heading"><i class="fas fa-university"></i>Directive Board</h2>
+    <h2 *ngIf="bodyName === 'districtDirectiveBoard'" class="results-body__body-heading"><i class="fas fa-university"></i>District Directive Board</h2>
+    <h2 *ngIf="bodyName === 'disciplinaryCourt'" class="results-body__body-heading"><i class="fas fa-university"></i>Disciplinary Court</h2>
+
+    <div 
+        class="results-body__seat" 
+        *ngIf="bodyProperties.includes('president')"
+    >
+
+        <div class="results-body__seat-flex">
+
+            <h4 class="results-body__seat-heading">President</h4>
+
+            <div class="results-body__data-flex">
+                <p class="results-body__paragraph results-body__paragraph--name">{{plateBody.president.user.name}} {{plateBody.president.user.lastName}}</p>
+
+                <p class="results-body__paragraph">Votes: <span class="results-body__span">{{plateBody.president.votes.length}}</span></p>
+            </div>
+
+        </div>
+
+    </div>  
+
+    <div 
+        class="results-body__seat" 
+        *ngIf="bodyProperties.includes('vicepresident')"
+    >
+
+        <div class="results-body__seat-flex">
+            
+            <h4 class="results-body__seat-heading">Vicepresident</h4>
+
+            <div class="results-body__data-flex">
+                <p class="results-body__paragraph results-body__paragraph--name">{{plateBody.vicepresident.user.name}} {{plateBody.vicepresident.user.lastName}}</p>
+
+                <p class="results-body__paragraph">Votes: <span class="results-body__span">{{plateBody.vicepresident.votes.length}}</span></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div 
+        class="results-body__seat"
+        *ngIf="bodyProperties.includes('treasurer')">
+
+        <div class="results-body__seat-flex">
+
+            <h4 class="results-body__seat-heading">Treasuser</h4>
+
+            <div class="results-body__data-flex">
+                <p class="results-body__paragraph results-body__paragraph--name">{{plateBody.treasurer.user.name}} {{plateBody.treasurer.user.lastName}}</p>
+
+                <p class="results-body__paragraph">Votes: <span class="results-body__span">{{plateBody.treasurer.votes.length}}</span></p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div 
+        class="results-body__seat"
+        *ngIf="bodyProperties.includes('generalSecretary')"
+    >
+
+        <div class="results-body__seat-flex">
+
+            <h4 class="results-body__seat-heading">General Secretary</h4>
+
+            <div class="results-body__data-flex">
+                <p class="results-body__paragraph results-body__paragraph--name">{{plateBody.generalSecretary.user.name}} {{plateBody.generalSecretary.user.lastName}}</p>
+
+                <p class="results-body__paragraph">Votes: <span class="results-body__span">{{plateBody.generalSecretary.votes.length}}</span></p>
+            </div>
+
+        </div>
+
+      
+
+    </div>
+
+</div>

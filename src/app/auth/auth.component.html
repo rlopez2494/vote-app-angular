@@ -8,11 +8,12 @@
             </app-loading-spinner>
         </div>
 
-        <p *ngIf="!showRegister" class="login__heading">LOG IN</p>
+        <p *ngIf="!showRegister && !showChangePassword" class="login__heading">LOG IN</p>
         <p *ngIf="showRegister" class="login__heading">SIGN UP</p>
+        <p *ngIf="showChangePassword" class="login__heading">CHANGE PASSWORD</p>
     
         <form 
-            *ngIf="!showRegister"
+            *ngIf="!showRegister && !showChangePassword"
             class="login__form" 
             [formGroup]="loginSubmission"
             (ngSubmit)="onLogin()">
@@ -44,7 +45,10 @@
                 </div>
 
                 <div class="login__link-container">
-                    <a class="login__link" href="#">Forgot your password?</a>
+                    <a 
+                    class="login__link" 
+                    href="#"
+                    (click)="onShowChangePassword($event)">Change password</a>
                 </div>
 
                 <div class="alert alert--login" *ngIf="error">
@@ -143,14 +147,6 @@
                     <p>{{error}}</p>
                 </div>
 
-                <div class="login__link-container">
-                    <a 
-                    class="login__link" 
-                    href="#"
-                    *ngIf="!showRegister">Forgot your password?
-                    </a>
-                </div>
-
                 <div class="login__buttons">
             
                     <button 
@@ -171,6 +167,82 @@
 
             </div> 
     
+        </form>
+
+        <form
+            *ngIf="showChangePassword"
+            (ngSubmit)="onChangePassword()"
+            [formGroup]="changePassword"
+            class="login__form">
+
+            <div class="login__input-group">
+                <label class="login__input-label" for="email">Email</label>
+                <input
+                id="email" 
+                class="login__input"
+                name="email"
+                type="email"
+                formControlName="email"  
+                placeholder="user@account.com"
+                />
+                <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+            </div>
+
+            <div class="login__input-group">
+                <label class="login__input-label" for="current-password">Password</label>
+                <input 
+                id="current-password"
+                class="login__input"
+                name="password"
+                type="password"
+                formControlName="currentPassword"
+                />
+            </div>
+
+            <div class="login__input-group">
+                <label class="login__input-label" for="password">New Password</label>
+                <input 
+                id="password"
+                class="login__input"
+                name="password"
+                type="password"
+                formControlName="password"
+                />
+            </div>
+
+            <div class="login__input-group">
+                <label class="login__input-label" for="repeat-new-password">Repeat New Password</label>
+                <input 
+                id="repeat-new-password"
+                class="login__input"
+                name="password"
+                type="password"
+                formControlName="repeatPassword"
+                />
+            </div>
+
+            <div class="alert alert--login" *ngIf="error">
+                <p>{{error}}</p>
+            </div>
+
+            <div class="login__buttons">
+
+                <button
+                    class="btn btn--primary btn--auth"
+                    type="submit"
+                    [disabled]="(!changePassword.touched || !changePassword.valid)"
+                    >CHANGE PASSWORD
+                </button>
+            
+        
+                <button 
+                    (click)="onCancelChangePassword()"
+                    class="btn btn--secondary btn--auth"
+                    >CANCEL
+                </button>
+        
+            </div>
+
         </form>
         
     </div>

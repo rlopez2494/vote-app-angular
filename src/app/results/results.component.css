@@ -1,0 +1,74 @@
+.results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.main-box {
+    width: 95%;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.results__heading {
+    color: #333;
+    padding: 15px 0;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.results__bodies {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.results__heading {
+    color: #333;
+    padding: 15px 0;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.results__body {
+    /* background: #1B252B; */ /*Just in case i want this previous color*/
+    background: #1976d2;
+    width: 95%;
+    max-width: 820px;
+    border: 1px solid #333;
+    box-shadow: 1px 1px 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    margin: 0 auto 30px auto;
+}
+
+.plate-edit__btn {
+    background: #fff;
+    color: #1976d2;
+    border: none;
+    margin-right: 50px;
+    font-size: 1rem;
+    padding: 8px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px #333;
+    transition: background .1s, 
+        color .1s, 
+        border-color .1s,
+        box-shadow .1s;
+    margin: 0 20px;
+}
+
+.plate-edit__btn--warning:hover {
+    background: rgb(250, 46, 46);
+    color: #fff;
+}
+
+.plate-edit__btn--primary:hover {
+    background: #1A7AAB;
+    color: #fff;
+}

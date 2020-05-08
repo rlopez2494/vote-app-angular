@@ -1,8 +1,8 @@
 <div class="vote">
 
-    <div class="over" *ngIf="!(data.length > 1)">
+    <div class="over" *ngIf="!(data.length > 1) && !isLoading">
         <div class="alert-modal">
-            <p class="vote__modal-paragraph">There are no plates already registered, please register at least two of them</p>
+            <p class="alert-modal__paragraph">There are no plates already registered, please register at least two of them</p>
             <div class="btn-container btn-container--left">
                 <button class="btn btn--secondary" [routerLink]="['/home']">
                     Go to home

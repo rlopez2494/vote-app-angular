@@ -8,4 +8,17 @@
     justify-content: space-evenly;
 }
 
+@media screen and (max-width: 560px) {
+    .plates {
+        width: 90%;
+        padding: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .plate {
+        width: 100%
+    }
+}
+
 

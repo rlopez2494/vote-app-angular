@@ -48,7 +48,9 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.authService.logout()
-      .subscribe(() => {}, 
+      .subscribe(() => {
+        alert('Logged out successfully');
+      }, 
         (error) => {
           alert(error)
           this.router.navigate([''])
