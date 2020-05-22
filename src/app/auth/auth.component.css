@@ -60,6 +60,7 @@
 
 .login__input-errors {
     color: rgb(255, 109, 109);
+    margin-top: 5px;
 }
 
 .login__input-group {
@@ -85,7 +86,7 @@
     outline: none;
 }
 
-.login__input[type="email"].ng-invalid.ng-dirty {
+.login__input.ng-invalid.ng-touched {
     border: 1px solid rgb(255, 66, 66);
 }
 
@@ -195,6 +196,11 @@
         color: #333;
         font-size: 1.5rem;
         font-weight: 600;
+    }
+
+    .login__input-errors {
+        margin-top: 10px;
+        font-size: 1.5rem;
     }
 }
 

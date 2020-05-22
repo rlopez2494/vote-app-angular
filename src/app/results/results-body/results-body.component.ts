@@ -1,10 +1,25 @@
 import { Component, Input } from "@angular/core";
 
 export interface VoteResultBody {
-    president: {},
-    vicepresident: {},
-    treasurer?: {},
-    generalSecretary: {}
+    president: {
+        user: {
+            name: string,
+            lastName: string
+        },
+        votos: {},
+    },
+    vicepresident: {
+        user: {},
+        votos: {},
+    },
+    treasurer?: {
+        user: {},
+        votos: {},
+    },
+    generalSecretary: {
+        user: {},
+        votos: {},
+    }
 }
 
 @Component({
@@ -15,9 +30,10 @@ export interface VoteResultBody {
 
 export class ResultsBodyComponent {
     @Input() bodyName: string;
-    @Input() plateBody: VoteResultBody
+    @Input() plateBody: any;
 
     get bodyProperties() {
+        console.log(this.plateBody);
         return Object.keys(this.plateBody);
       }
 }

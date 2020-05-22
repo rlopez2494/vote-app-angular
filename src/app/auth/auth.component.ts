@@ -88,7 +88,12 @@ export class AuthComponent implements OnInit {
     this.changePassword = new FormGroup({
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'currentPassword': new FormControl(null, [Validators.required]),
-      'password': new FormControl(null, [Validators.required]),
+      'password': new FormControl(
+        null, 
+        [
+          Validators.required, 
+          Validators.minLength(8)
+        ]),
       'repeatPassword': new FormControl(
         null,
         [
@@ -110,6 +115,10 @@ export class AuthComponent implements OnInit {
         this.isLoading = false;
       })
 
+    })
+
+    this.registerSubmission.valueChanges.subscribe(() => {
+      console.log(this.registerSubmission.get('repeatPassword').errors)
     })
 
   }

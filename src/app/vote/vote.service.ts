@@ -37,16 +37,21 @@ export class VoteService {
         
         let errorMessage = 'An unknown error occurred!';
         
-        if(!errorRes.error || !errorRes.error.message) {
+        if(!errorRes.error || !errorRes.error.error) {
             return throwError(errorMessage);
         }
+        
 
-        switch (errorRes.error.message) {
+        switch (errorRes.error.error) {
 
             case 'NOT_AUTHORIZED':
                 localStorage.removeItem('userData');
                 errorMessage = 'You are not authorized to be here';
                 break;
+            
+            case 'VOTE_NOT_FOUND':
+                errorMessage = 'There are no votes registered yet in this account, you need to make at least one vote to see the results';
+                break
         }
 
         return throwError(errorMessage);

@@ -28,15 +28,7 @@ export class ResultsComponent implements OnInit {
                            
             }, (error) => {
                 this.isLoading = false;
-          
-                switch (error) {
-                    case 'VOTE_NOT_FOUND':
-                        this.errorMessage = 'There are no votes registered yet in this account, you need to make at least one vote to see the results'
-                        break;
-                
-                    default:
-                        break;
-                }    
+                this.errorMessage = error;    
             })
     }
 }

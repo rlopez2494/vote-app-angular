@@ -11,7 +11,10 @@
         <p *ngIf="!showRegister && !showChangePassword" class="login__heading">LOG IN</p>
         <p *ngIf="showRegister" class="login__heading">SIGN UP</p>
         <p *ngIf="showChangePassword" class="login__heading">CHANGE PASSWORD</p>
-    
+
+
+        <!-- ------------------------------------- SIGN UP FORM ------------------------------------- -->
+
         <form 
             *ngIf="!showRegister && !showChangePassword"
             class="login__form" 
@@ -30,10 +33,25 @@
                     formControlName="email"  
                     placeholder="user@account.com"
                     />
-                    <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+
+                    <p 
+                        *ngIf="loginSubmission.get('email').touched &&
+                        loginSubmission.get('email').errors &&
+                        loginSubmission.get('email').errors['required']" class="login__input-errors">
+                        Required field
+                    </p>
+
+                    <p 
+                        *ngIf="loginSubmission.get('email').touched &&
+                        loginSubmission.get('email').errors &&
+                        loginSubmission.get('email').errors['email']" class="login__input-errors">
+                        Please enter a valid email
+                    </p>
+
                 </div>
 
                 <div class="login__input-group">
+                    
                     <label class="login__input-label" for="password">Password</label>
                     <input 
                     id="password"
@@ -42,6 +60,14 @@
                     type="password"
                     formControlName="password"
                     />
+
+                    <p 
+                        *ngIf="loginSubmission.get('password').touched &&
+                        loginSubmission.get('password').errors &&
+                        loginSubmission.get('password').errors['required']" class="login__input-errors">
+                        Required field
+                    </p>
+
                 </div>
 
                 <div class="login__link-container">
@@ -76,7 +102,10 @@
             </div> 
     
         </form>
+        <!-- ------------------------------------- |||||||||||| ----------------------------------- -->
 
+
+        <!-- ------------------------------------ LOGIN FORM -------------------------------------- -->
         <form 
             *ngIf="showRegister"
             class="login__form" 
@@ -94,7 +123,28 @@
                     formControlName="name"  
                     placeholder="Insert name"
                     />
-                    <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+
+                    <p 
+                        *ngIf="registerSubmission.get('name').touched &&
+                        registerSubmission.get('name').errors &&
+                        registerSubmission.get('name').errors['required']" class="login__input-errors">
+                        Required field
+                    </p>
+
+                    <p 
+                        *ngIf="registerSubmission.get('name').touched &&
+                        registerSubmission.get('name').errors &&
+                        registerSubmission.get('name').errors['minlength']" class="login__input-errors">
+                        The name must be at least 2 characters long
+                    </p>
+
+                    <p 
+                        *ngIf="registerSubmission.get('name').touched &&
+                        registerSubmission.get('name').errors &&
+                        registerSubmission.get('name').errors['maxlength']" class="login__input-errors">
+                        The name must be up to 15 characters long
+                    </p>
+                    
                 </div>
 
                 <div class="login__input-group">
@@ -106,10 +156,32 @@
                     formControlName="lastName"  
                     placeholder="Insert last name"
                     />
-                    <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+                    
+                    <p 
+                        *ngIf="registerSubmission.get('lastName').touched &&
+                        registerSubmission.get('lastName').errors &&
+                        registerSubmission.get('lastName').errors['required']" class="login__input-errors">
+                        Required field
+                    </p>
+
+                    <p 
+                        *ngIf="registerSubmission.get('lastName').touched &&
+                        registerSubmission.get('lastName').errors &&
+                        registerSubmission.get('lastName').errors['minlength']" class="login__input-errors">
+                        The name must be at least 2 characters long
+                    </p>
+
+                    <p 
+                        *ngIf="registerSubmission.get('lastName').touched &&
+                        registerSubmission.get('lastName').errors &&
+                        registerSubmission.get('lastName').errors['maxlength']" class="login__input-errors">
+                        The name must be up to 15 characters long
+                    </p>
+
                 </div>
 
                 <div class="login__input-group">
+
                     <label class="login__input-label" for="email">Email</label>
                     <input
                     id="email" 
@@ -118,10 +190,25 @@
                     formControlName="email"  
                     placeholder="user@account.com"
                     />
-                    <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+
+                    <p 
+                        *ngIf="registerSubmission.get('email').touched &&
+                        registerSubmission.get('email').errors &&
+                        registerSubmission.get('email').errors['required']" class="login__input-errors">
+                        Required field
+                    </p>
+
+                    <p 
+                        *ngIf="registerSubmission.get('email').touched &&
+                        registerSubmission.get('email').errors &&
+                        registerSubmission.get('email').errors['email']" class="login__input-errors">
+                        Please enter a valid email
+                    </p>
+
                 </div>
 
                 <div class="login__input-group">
+
                     <label class="login__input-label" for="password">Password</label>
                     <input 
                     id="password"
@@ -130,9 +217,24 @@
                     type="password"
                     formControlName="password"
                     />
+
+                    <p 
+                        *ngIf="registerSubmission.get('password').touched &&
+                        registerSubmission.get('password').errors &&
+                        registerSubmission.get('password').errors['required']" class="login__input-errors">
+                        Required field
+                    </p>
+
+                    <p 
+                        *ngIf="registerSubmission.get('password').touched &&
+                        registerSubmission.get('password').errors &&
+                        registerSubmission.get('password').errors['minlength']" class="login__input-errors">
+                        The password must be at least 8 characters long
+                    </p>
                 </div>
 
                 <div class="login__input-group">
+
                     <label class="login__input-label" for="repeat-password">Repeat password</label>
                     <input 
                     id="repeat-password"
@@ -141,6 +243,20 @@
                     type="password"
                     formControlName="repeatPassword"
                     />
+
+                    <p 
+                        *ngIf="registerSubmission.get('repeatPassword').touched &&
+                        registerSubmission.get('repeatPassword').errors &&
+                        registerSubmission.get('repeatPassword').errors['required']" class="login__input-errors">
+                        Required field
+                    </p>
+
+                    <p 
+                        *ngIf="registerSubmission.get('repeatPassword').touched &&
+                        registerSubmission.get('repeatPassword').errors &&
+                        registerSubmission.get('repeatPassword').errors['passwordIsDifferent']" class="login__input-errors">
+                        The passwords are not the same
+                    </p>
                 </div>
 
                 <div class="alert alert--login" *ngIf="error">
@@ -168,7 +284,10 @@
             </div> 
     
         </form>
+        <!-- ------------------------------------ ||||||||| -------------------------------------- -->
 
+
+        <!-- ------------------------------- CHANGE PASSWORD FORM --------------------------------- -->
         <form
             *ngIf="showChangePassword"
             (ngSubmit)="onChangePassword()"
@@ -176,6 +295,7 @@
             class="login__form">
 
             <div class="login__input-group">
+
                 <label class="login__input-label" for="email">Email</label>
                 <input
                 id="email" 
@@ -183,9 +303,22 @@
                 name="email"
                 type="email"
                 formControlName="email"  
-                placeholder="user@account.com"
-                />
-                <!-- <p *ngIf="(!email.valid && email.touched)" class="login__input-errors">Please enter a valid email</p> -->
+                placeholder="user@account.com"/>
+
+                <p 
+                    *ngIf="changePassword.get('email').touched &&
+                    changePassword.get('email').errors &&
+                    changePassword.get('email').errors['required']" class="login__input-errors">
+                    Required field
+                </p>
+
+                <p 
+                    *ngIf="changePassword.get('email').touched &&
+                    changePassword.get('email').errors &&
+                    changePassword.get('email').errors['email']" class="login__input-errors">
+                    Please enter a valid email
+                </p>
+
             </div>
 
             <div class="login__input-group">
@@ -195,30 +328,72 @@
                 class="login__input"
                 name="password"
                 type="password"
-                formControlName="currentPassword"
-                />
+                formControlName="currentPassword"/>
+
+                <p 
+                    *ngIf="changePassword.get('currentPassword').touched &&
+                    changePassword.get('currentPassword').errors &&
+                    changePassword.get('currentPassword').errors['required']" class="login__input-errors">
+                    Required field
+                </p>
+
+                <p 
+                    *ngIf="changePassword.get('currentPassword').touched &&
+                    changePassword.get('currentPassword').errors &&
+                    changePassword.get('currentPassword').errors['minlength']" class="login__input-errors">
+                    The password must be at least 8 characters long
+                </p>
+                
             </div>
 
             <div class="login__input-group">
+
                 <label class="login__input-label" for="password">New Password</label>
                 <input 
                 id="password"
                 class="login__input"
                 name="password"
                 type="password"
-                formControlName="password"
-                />
+                formControlName="password"/>
+
+                <p 
+                    *ngIf="changePassword.get('password').touched &&
+                    changePassword.get('password').errors &&
+                    changePassword.get('password').errors['required']" class="login__input-errors">
+                    Required field
+                </p>
+
+                <p 
+                    *ngIf="changePassword.get('password').touched &&
+                    changePassword.get('password').errors &&
+                    changePassword.get('password').errors['minlength']" class="login__input-errors">
+                    The password must be at least 8 characters long
+                </p>
             </div>
 
             <div class="login__input-group">
+
                 <label class="login__input-label" for="repeat-new-password">Repeat New Password</label>
                 <input 
                 id="repeat-new-password"
                 class="login__input"
                 name="password"
                 type="password"
-                formControlName="repeatPassword"
-                />
+                formControlName="repeatPassword"/>
+
+                <p 
+                    *ngIf="changePassword.get('repeatPassword').touched &&
+                    changePassword.get('repeatPassword').errors &&
+                    changePassword.get('repeatPassword').errors['required']" class="login__input-errors">
+                    Required field
+                </p>
+
+                <p 
+                    *ngIf="changePassword.get('repeatPassword').touched &&
+                    changePassword.get('repeatPassword').errors &&
+                    changePassword.get('repeatPassword').errors['passwordIsDifferent']" class="login__input-errors">
+                    The passwords are not the same
+                </p>
             </div>
 
             <div class="alert alert--login" *ngIf="error">
@@ -245,6 +420,8 @@
 
         </form>
         
+        <!-- ------------------------------------ ||||||||| -------------------------------------- -->
+
     </div>
 
 </div>
